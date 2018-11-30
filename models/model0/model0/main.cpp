@@ -7,9 +7,11 @@
 
 #define BLOCK_SIZE 16
 #define MAX_NUM_CHANNEL 8
-#define PROJECT44_CHANNEL_NUM 5
+#define PROJECT_RA44_CHANNEL_NUM 5
 
 double sampleBuffer[MAX_NUM_CHANNEL][BLOCK_SIZE];
+
+int output_channels[] = { 2, 2, 5 };
 
 double gain6db_scaled = 0.501187;
 double gain2db_scaled = 0.794328;
@@ -17,6 +19,14 @@ double processing_input_gain = 0.501187;
 double processing_headroom_gain = 0.707946;
 
 bool processing_enable = true;
+
+/*
+int MODE2_0_0_buffer_choice[] = { 0, 2, 0, 0, 0 };
+int MODE0_2_0_buffer_choice[] = { 3, 4, 0, 0, 0 };
+int MODE3_2_0_buffer_choice[] = { 0, 1, 2, 3, 4 };
+*/
+
+int buffer_choice[3][5] = { { 0, 2, 0, 0, 0 }, { 3, 4, 0, 0, 0 }, { 0, 1, 2, 3, 4 } };
 
 // Default processing compressor parameters for this project
 float processing_compressor_threshold = 0.5;
@@ -27,14 +37,15 @@ AudioCompressor_t processing_audio_compressor;
 enum processing_output_mode_t { MODE2_0_0, MODE0_2_0, MODE3_2_0 };
 processing_output_mode_t processing_output_mode = MODE2_0_0;
 
+// TODO Monday: indexing with pointers.
 void processing()
 {
 	int i;
 	for (i = 0; i < BLOCK_SIZE; i++) 
 	{
 		sampleBuffer[3][i] = sampleBuffer[0][i] * processing_input_gain;
-		sampleBuffer[1][i] = sampleBuffer[0][i] * processing_input_gain + sampleBuffer[2][i] * processing_input_gain;
 		sampleBuffer[4][i] = sampleBuffer[2][i] * processing_input_gain;
+		sampleBuffer[1][i] = sampleBuffer[0][i] + sampleBuffer[2][i];
 	}
 
 	gst_audio_dynamic_transform_compressor_double(&processing_audio_compressor, sampleBuffer[3], BLOCK_SIZE);
@@ -88,11 +99,48 @@ int main(int argc, char* argv[])
 	//-------------------------------------------------
 	ReadWavHeader(wav_in,inputWAVhdr);
 	//-------------------------------------------------
-	
+	// Set data from command line
+	//-------------------------------------------------
+
+	if (argc > 3)
+	{
+		// Enable argv[3]
+		processing_enable = atoi(argv[3]);
+
+		if (argc > 4)
+		{
+			// Input gain argv[4]
+			int processing_gain_dB = atoi(argv[4]);
+			processing_input_gain = pow(10.0, (processing_gain_dB / 20.0));
+
+			if (argc > 5)
+			{
+				// Headroom gain argv[5]
+				processing_gain_dB = atoi(argv[5]);
+				processing_headroom_gain = pow(10.0, (processing_gain_dB / 20.0));
+
+				if (argc > 6)
+				{
+					// Mode argv[6]
+					if (atoi(argv[6]) == 1)
+					{
+						processing_output_mode = MODE2_0_0;
+					}
+					else if (atoi(argv[6]) == 2)
+					{
+						processing_output_mode = MODE3_2_0;
+					}	// Else is default
+				}
+			}
+		}
+	}
+
+	//-------------------------------------------------
 	// Set up output WAV header
 	//-------------------------------------------------	
 	outputWAVhdr = inputWAVhdr;
-	outputWAVhdr.fmt.NumChannels = PROJECT44_CHANNEL_NUM; // change number of channels
+	// change number of channels
+	outputWAVhdr.fmt.NumChannels = output_channels[processing_output_mode];
 
 	int oneChannelSubChunk2Size = inputWAVhdr.data.SubChunk2Size/inputWAVhdr.fmt.NumChannels;
 	int oneChannelByteRate = inputWAVhdr.fmt.ByteRate/inputWAVhdr.fmt.NumChannels;
@@ -103,6 +151,7 @@ int main(int argc, char* argv[])
 	outputWAVhdr.fmt.BlockAlign = oneChannelBlockAlign*outputWAVhdr.fmt.NumChannels;
 
 	// User input
+	/*
 	char usr_input_char;
 
 	printf("\nChange input gain? (y/n): ");
@@ -146,7 +195,7 @@ int main(int argc, char* argv[])
 		}
 	}
 	fflush(stdin);
-
+	*/
 	processing_audio_compressor.threshold = processing_compressor_threshold;
 	processing_audio_compressor.ratio = processing_compressor_ratio;
 
@@ -178,12 +227,17 @@ int main(int argc, char* argv[])
 			}
 
 			//processing();
-
+			if (processing_enable)
+			{
+				processing();
+			}
+			//cfg1 = { 0, 1, 3, 4 };
+			//cfg2 = { 3, 4, 5, 6 };
 			for(int j=0; j<BLOCK_SIZE; j++)
 			{
 				for(int k=0; k<outputWAVhdr.fmt.NumChannels; k++)
 				{	
-					sample = sampleBuffer[k][j] * SAMPLE_SCALE ;	// crude, non-rounding 			
+					sample = sampleBuffer[buffer_choice[processing_output_mode][k]][j] * SAMPLE_SCALE ;	// crude, non-rounding 			
 					sample = sample >> (32 - inputWAVhdr.fmt.BitsPerSample);
 					fwrite(&sample, outputWAVhdr.fmt.BitsPerSample/8, 1, wav_out);		
 				}
