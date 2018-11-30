@@ -1,6 +1,8 @@
-﻿  WAVheader.cpp
-  main.cpp
-d:\ra44-2015-shared\aadsp2_project\cirrus_logic_dsp_project\models\model0\model0\main.cpp(83): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
+﻿  main.cpp
+d:\ra44-2015-shared\aadsp2_project\cirrus_logic_dsp_project\models\model0\model0\compressor.c(30): warning C4018: '<': signed/unsigned mismatch
+d:\ra44-2015-shared\aadsp2_project\cirrus_logic_dsp_project\models\model0\model0\compressor.c(52): warning C4018: '<': signed/unsigned mismatch
+d:\ra44-2015-shared\aadsp2_project\cirrus_logic_dsp_project\models\model0\model0\main.cpp(186): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+d:\ra44-2015-shared\aadsp2_project\cirrus_logic_dsp_project\models\model0\model0\main.cpp(113): warning C4477: 'scanf' : format string '%ld' requires an argument of type 'long *', but variadic argument 1 has type 'double *'
+d:\ra44-2015-shared\aadsp2_project\cirrus_logic_dsp_project\models\model0\model0\main.cpp(122): warning C4477: 'scanf' : format string '%ld' requires an argument of type 'long *', but variadic argument 1 has type 'double *'
   model0.vcxproj -> D:\RA44-2015-SHARED\AADSP2_project\cirrus_logic_dsp_project\models\model0\Debug\model0.exe
   model0.vcxproj -> D:\RA44-2015-SHARED\AADSP2_project\cirrus_logic_dsp_project\models\model0\Debug\model0.pdb (Partial PDB)

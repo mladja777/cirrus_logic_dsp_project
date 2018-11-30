@@ -29,36 +29,26 @@ processing_output_mode_t processing_output_mode = MODE2_0_0;
 
 void processing()
 {
-	processing_audio_compressor.threshold = processing_compressor_threshold;
-	processing_audio_compressor.ratio = processing_compressor_ratio;
 	int i;
 	for (i = 0; i < BLOCK_SIZE; i++) 
 	{
 		sampleBuffer[3][i] = sampleBuffer[0][i] * processing_input_gain;
-		sampleBuffer[0][i] = sampleBuffer[0][i] * processing_input_gain;
 		sampleBuffer[1][i] = sampleBuffer[0][i] * processing_input_gain + sampleBuffer[2][i] * processing_input_gain;
-		sampleBuffer[2][i] = sampleBuffer[2][i] * processing_input_gain;
 		sampleBuffer[4][i] = sampleBuffer[2][i] * processing_input_gain;
 	}
 
-	for (i = 0; i < BLOCK_SIZE; i++)
-	{
-		sampleBuffer[1][i] = sampleBuffer[0][i] + sampleBuffer[2][i];
-	}
-	gst_audio_dynamic_transform_compressor_double(&processing_audio_compressor, sampleBuffer[3], PROJECT44_CHANNEL_NUM);
-	gst_audio_dynamic_transform_compressor_double(&processing_audio_compressor, sampleBuffer[4], PROJECT44_CHANNEL_NUM);
+	gst_audio_dynamic_transform_compressor_double(&processing_audio_compressor, sampleBuffer[3], BLOCK_SIZE);
+	gst_audio_dynamic_transform_compressor_double(&processing_audio_compressor, sampleBuffer[4], BLOCK_SIZE);
 
 	for (i = 0; i < BLOCK_SIZE; i++)
 	{
-		sampleBuffer[0][i] = sampleBuffer[0][i] * processing_headroom_gain;
-		sampleBuffer[1][i] = sampleBuffer[0][i] * processing_headroom_gain;
-		sampleBuffer[2][i] = sampleBuffer[0][i] * processing_headroom_gain;
+		sampleBuffer[1][i] = sampleBuffer[1][i] * processing_headroom_gain;
 	}
 
 	for (i = 0; i < BLOCK_SIZE; i++)
 	{
-		sampleBuffer[0][i] = sampleBuffer[0][i] * gain6db_scaled;
-		sampleBuffer[2][i] = sampleBuffer[0][i] * gain6db_scaled;
+		sampleBuffer[0][i] = sampleBuffer[1][i] * gain6db_scaled;
+		sampleBuffer[2][i] = sampleBuffer[1][i] * gain6db_scaled;
 	}
 
 	for (i = 0; i < BLOCK_SIZE; i++)
@@ -157,6 +147,8 @@ int main(int argc, char* argv[])
 	}
 	fflush(stdin);
 
+	processing_audio_compressor.threshold = processing_compressor_threshold;
+	processing_audio_compressor.ratio = processing_compressor_ratio;
 
 	// Write output WAV header to file
 	//-------------------------------------------------
