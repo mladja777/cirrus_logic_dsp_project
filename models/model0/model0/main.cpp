@@ -45,7 +45,7 @@ void processing()
 	{
 		sampleBuffer[3][i] = sampleBuffer[0][i] * processing_input_gain;
 		sampleBuffer[4][i] = sampleBuffer[2][i] * processing_input_gain;
-		sampleBuffer[1][i] = sampleBuffer[0][i] + sampleBuffer[2][i];
+		sampleBuffer[1][i] = sampleBuffer[3][i] + sampleBuffer[4][i];
 	}
 
 	gst_audio_dynamic_transform_compressor_double(&processing_audio_compressor, sampleBuffer[3], BLOCK_SIZE);
@@ -64,8 +64,8 @@ void processing()
 
 	for (i = 0; i < BLOCK_SIZE; i++)
 	{
-		sampleBuffer[3][i] = sampleBuffer[0][i] * gain2db_scaled;
-		sampleBuffer[4][i] = sampleBuffer[2][i] * gain2db_scaled;
+		sampleBuffer[3][i] = sampleBuffer[3][i] * gain2db_scaled;
+		sampleBuffer[4][i] = sampleBuffer[4][i] * gain2db_scaled;
 	}
 
 	for (i = 0; i < BLOCK_SIZE; i++)
