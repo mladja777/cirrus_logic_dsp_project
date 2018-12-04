@@ -1,0 +1,6 @@
+﻿  main.cpp
+d:\ra44-2015-shared\aadsp2_project\cirrus_logic_dsp_project\models\model1\model1\main.cpp(32): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\ra44-2015-shared\aadsp2_project\cirrus_logic_dsp_project\models\model1\model1\main.cpp(212): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+d:\ra44-2015-shared\aadsp2_project\cirrus_logic_dsp_project\models\model1\model1\main.cpp(303): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  model1.vcxproj -> D:\RA44-2015-SHARED\AADSP2_project\cirrus_logic_dsp_project\models\model1\Debug\model1.exe
+  model1.vcxproj -> D:\RA44-2015-SHARED\AADSP2_project\cirrus_logic_dsp_project\models\model1\Debug\model1.pdb (Partial PDB)

@@ -3,7 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include "WAVheader.h"
-#include "compressor.c"
+#include "compressor.h"
 
 #define BLOCK_SIZE 16
 #define MAX_NUM_CHANNEL 8
@@ -29,13 +29,13 @@ int MODE3_2_0_buffer_choice[] = { 0, 1, 2, 3, 4 };
 int buffer_choice[3][5] = { { 0, 2, 0, 0, 0 }, { 3, 4, 0, 0, 0 }, { 0, 1, 2, 3, 4 } };
 
 // Default processing compressor parameters for this project
-float processing_compressor_threshold = 0.5;
+float processing_compressor_threshold = 0.1;
 float processing_compressor_ratio = 0.5;
 
 AudioCompressor_t processing_audio_compressor;
 
 enum processing_output_mode_t { MODE2_0_0, MODE0_2_0, MODE3_2_0 };
-processing_output_mode_t processing_output_mode = MODE2_0_0;
+processing_output_mode_t processing_output_mode = MODE3_2_0;
 
 // TODO Monday: indexing with pointers. --> DONE.
 // For mode020 all processing has to be done like mode320 \
@@ -94,7 +94,7 @@ void processing()
 		double *sbRs = sampleBuffer[4];
 
 		int i;
-		// TODO: ASM hw loop
+		// TODO: ASM hw loop --> optimized.
 		for (i = 0; i < BLOCK_SIZE; i++)
 		{
 			// sampleBuffer[3][i] = sampleBuffer[0][i] * processing_input_gain;
@@ -105,17 +105,17 @@ void processing()
 			*sbC = (*sbLs) + (*sbRs);
 			// pointer increments
 			sbLs++;
-			sbR++;
+			sbL++;
 			sbRs++;
 			sbR++;
 			sbC++;
 		}
 		// reseting pointers positions
-		sbL -= BLOCK_SIZE;
-		sbC -= BLOCK_SIZE;
-		sbR -= BLOCK_SIZE;
-		sbLs -= BLOCK_SIZE;
-		sbRs -= BLOCK_SIZE;
+		sbL = sampleBuffer[0];
+		sbC = sampleBuffer[1];
+		sbR = sampleBuffer[2];
+		sbLs = sampleBuffer[3];
+		sbRs = sampleBuffer[4];
 
 		// sampleBuffer[3]
 		gst_audio_dynamic_transform_compressor_double(&processing_audio_compressor, sbLs, BLOCK_SIZE);
@@ -129,7 +129,7 @@ void processing()
 			sbC++;
 		}
 		// reseting sbC
-		sbC -= BLOCK_SIZE;
+		sbC = sampleBuffer[1];
 
 		// TODO: ASM hw loop
 		for (i = 0; i < BLOCK_SIZE; i++)
@@ -144,9 +144,9 @@ void processing()
 			sbC++;
 		}
 		// reseting pointers positions
-		sbL -= BLOCK_SIZE;
-		sbC -= BLOCK_SIZE;
-		sbR -= BLOCK_SIZE;
+		sbL = sampleBuffer[0];
+		sbC = sampleBuffer[1];
+		sbR = sampleBuffer[2];
 
 		// TODO: ASM hw loop
 		for (i = 0; i < BLOCK_SIZE; i++)
@@ -160,8 +160,8 @@ void processing()
 			sbRs++;
 		}
 		// ptr reset
-		sbLs -= BLOCK_SIZE;
-		sbRs -= BLOCK_SIZE;
+		sbLs = sampleBuffer[3];
+		sbRs = sampleBuffer[4];
 
 		// TODO: ASM hw loop
 		for (i = 0; i < BLOCK_SIZE; i++)
@@ -228,11 +228,11 @@ int main(int argc, char* argv[])
 					// Mode argv[6]
 					if (atoi(argv[6]) == 1)
 					{
-						processing_output_mode = MODE2_0_0;
+						processing_output_mode = MODE0_2_0;
 					}
-					else if (atoi(argv[6]) == 2)
+					else if (atoi(argv[6]) == 0)
 					{
-						processing_output_mode = MODE3_2_0;
+						processing_output_mode = MODE2_0_0;
 					}	// Else is default
 				}
 			}
@@ -282,6 +282,12 @@ int main(int argc, char* argv[])
 					sample = sample << (32 - inputWAVhdr.fmt.BitsPerSample); // force signextend
 					sampleBuffer[k][j] = sample / SAMPLE_SCALE;				// scale sample to 1.0/-1.0 range		
 				}
+			}
+
+			for (int k = 0; k < BLOCK_SIZE; k++)
+			{
+				sampleBuffer[2][k] = sampleBuffer[1][k];
+				sampleBuffer[1][k] = 0;
 			}
 
 			// processing();

@@ -29,13 +29,13 @@ int MODE3_2_0_buffer_choice[] = { 0, 1, 2, 3, 4 };
 int buffer_choice[3][5] = { { 0, 2, 0, 0, 0 }, { 3, 4, 0, 0, 0 }, { 0, 1, 2, 3, 4 } };
 
 // Default processing compressor parameters for this project
-float processing_compressor_threshold = 0.5;
+float processing_compressor_threshold = 0.1;
 float processing_compressor_ratio = 0.5;
 
 AudioCompressor_t processing_audio_compressor;
 
 enum processing_output_mode_t { MODE2_0_0, MODE0_2_0, MODE3_2_0 };
-processing_output_mode_t processing_output_mode = MODE2_0_0;
+processing_output_mode_t processing_output_mode = MODE3_2_0;
 
 // TODO Monday: indexing with pointers.
 void processing()
@@ -124,11 +124,11 @@ int main(int argc, char* argv[])
 					// Mode argv[6]
 					if (atoi(argv[6]) == 1)
 					{
-						processing_output_mode = MODE2_0_0;
+						processing_output_mode = MODE0_2_0;
 					}
-					else if (atoi(argv[6]) == 2)
+					else if (atoi(argv[6]) == 0)
 					{
-						processing_output_mode = MODE3_2_0;
+						processing_output_mode = MODE2_0_0;
 					}	// Else is default
 				}
 			}
@@ -224,6 +224,12 @@ int main(int argc, char* argv[])
 					sample = sample << (32 - inputWAVhdr.fmt.BitsPerSample); // force signextend
 					sampleBuffer[k][j] = sample / SAMPLE_SCALE;				// scale sample to 1.0/-1.0 range		
 				}
+			}
+
+			for (int k = 0; k < BLOCK_SIZE; k++)
+			{
+				sampleBuffer[2][k] = sampleBuffer[1][k];
+				sampleBuffer[1][k] = 0;
 			}
 
 			//processing();

@@ -15,18 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="compressor.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WAVheader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="compressor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WAVheader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="compressor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
