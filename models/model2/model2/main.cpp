@@ -3,7 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include "WAVheader.h"
-#include "compressor.c"
+#include "compressor.h"
 
 #define BLOCK_SIZE 16
 #define MAX_NUM_CHANNEL 8
@@ -35,7 +35,7 @@ DSPfract processing_compressor_ratio = FRACT_NUM(0.5);
 AudioCompressor_t processing_audio_compressor;
 
 enum processing_output_mode_t { MODE2_0_0, MODE0_2_0, MODE3_2_0 };
-processing_output_mode_t processing_output_mode = MODE2_0_0;
+processing_output_mode_t processing_output_mode = MODE3_2_0;
 
 // TODO Monday: indexing with pointers. --> DONE.
 // For mode020 all processing has to be done like mode320 \
@@ -94,7 +94,7 @@ void processing()
 		DSPfract *sbRs = sampleBuffer[4];
 
 		DSPint i;
-		// TODO: ASM hw loop
+		// TODO: ASM hw loop --> optimized.
 		for (i = 0; i < BLOCK_SIZE; i++)
 		{
 			// sampleBuffer[3][i] = sampleBuffer[0][i] * processing_input_gain;
@@ -105,17 +105,17 @@ void processing()
 			*sbC = (*sbLs) + (*sbRs);
 			// pointer increments
 			sbLs++;
-			sbR++;
+			sbL++;
 			sbRs++;
 			sbR++;
 			sbC++;
 		}
 		// reseting pointers positions
-		sbL -= BLOCK_SIZE;
-		sbC -= BLOCK_SIZE;
-		sbR -= BLOCK_SIZE;
-		sbLs -= BLOCK_SIZE;
-		sbRs -= BLOCK_SIZE;
+		sbL = sampleBuffer[0];
+		sbC = sampleBuffer[1];
+		sbR = sampleBuffer[2];
+		sbLs = sampleBuffer[3];
+		sbRs = sampleBuffer[4];
 
 		// sampleBuffer[3]
 		gst_audio_dynamic_transform_compressor_double(&processing_audio_compressor, sbLs, BLOCK_SIZE);
@@ -129,7 +129,7 @@ void processing()
 			sbC++;
 		}
 		// reseting sbC
-		sbC -= BLOCK_SIZE;
+		sbC = sampleBuffer[1];
 
 		// TODO: ASM hw loop
 		for (i = 0; i < BLOCK_SIZE; i++)
@@ -144,9 +144,9 @@ void processing()
 			sbC++;
 		}
 		// reseting pointers positions
-		sbL -= BLOCK_SIZE;
-		sbC -= BLOCK_SIZE;
-		sbR -= BLOCK_SIZE;
+		sbL = sampleBuffer[0];
+		sbC = sampleBuffer[1];
+		sbR = sampleBuffer[2];
 
 		// TODO: ASM hw loop
 		for (i = 0; i < BLOCK_SIZE; i++)
@@ -160,8 +160,8 @@ void processing()
 			sbRs++;
 		}
 		// ptr reset
-		sbLs -= BLOCK_SIZE;
-		sbRs -= BLOCK_SIZE;
+		sbLs = sampleBuffer[3];
+		sbRs = sampleBuffer[4];
 
 		// TODO: ASM hw loop
 		for (i = 0; i < BLOCK_SIZE; i++)
@@ -188,8 +188,15 @@ DSPint main(DSPint argc, char* argv[])
 	WAV_HEADER inputWAVhdr,outputWAVhdr;	
 
 	// Init channel buffers
-	for(DSPint i=0; i<MAX_NUM_CHANNEL; i++)
-		memset(&sampleBuffer[i],0,BLOCK_SIZE);
+	// memset(&sampleBuffer[i],0,BLOCK_SIZE);
+	for (DSPint i = 0; i < MAX_NUM_CHANNEL; i++)
+	{
+		for (DSPint j = 0; i < MAX_NUM_CHANNEL; i++)
+		{
+			sampleBuffer[i][j] = FRACT_NUM(0);
+		}
+	}
+		
 
 	// Open input and output wav files
 	//-------------------------------------------------
@@ -230,9 +237,9 @@ DSPint main(DSPint argc, char* argv[])
 					{
 						processing_output_mode = MODE2_0_0;
 					}
-					else if (atoi(argv[6]) == 2)
+					else if (atoi(argv[6]) == 0)
 					{
-						processing_output_mode = MODE3_2_0;
+						processing_output_mode = MODE0_2_0;
 					}	// Else is default
 				}
 			}
@@ -267,7 +274,7 @@ DSPint main(DSPint argc, char* argv[])
 	{
 		DSPint sample;
 		DSPint BytesPerSample = inputWAVhdr.fmt.BitsPerSample/8;
-		const double SAMPLE_SCALE = -(double)(1 << 31);		//2^31
+		const DSPfract SAMPLE_SCALE = -(DSPfract)(1 << 31);		//2^31
 		DSPint iNumSamples = inputWAVhdr.data.SubChunk2Size/(inputWAVhdr.fmt.NumChannels*inputWAVhdr.fmt.BitsPerSample/8);
 		
 		// exact file length should be handled correctly...
@@ -280,7 +287,7 @@ DSPint main(DSPint argc, char* argv[])
 					sample = 0; //debug
 					fread(&sample, BytesPerSample, 1, wav_in);
 					sample = sample << (32 - inputWAVhdr.fmt.BitsPerSample); // force signextend
-					sampleBuffer[k][j] = FRACT_NUM(sample / SAMPLE_SCALE);				// scale sample to 1.0/-1.0 range		
+					sampleBuffer[k][j] = FRACT_NUM(sample) / SAMPLE_SCALE;				// scale sample to 1.0/-1.0 range		
 				}
 			}
 
@@ -294,7 +301,7 @@ DSPint main(DSPint argc, char* argv[])
 			{
 				for(DSPint k=0; k<outputWAVhdr.fmt.NumChannels; k++)
 				{	
-					sample = sampleBuffer[buffer_choice[processing_output_mode][k]][j] * FRACT_NUM(SAMPLE_SCALE) ;	// crude, non-rounding 			
+					sample = sampleBuffer[buffer_choice[processing_output_mode][k]][j].toLong() ;	// crude, non-rounding 			
 					sample = sample >> (32 - inputWAVhdr.fmt.BitsPerSample);
 					fwrite(&sample, outputWAVhdr.fmt.BitsPerSample/8, 1, wav_out);		
 				}

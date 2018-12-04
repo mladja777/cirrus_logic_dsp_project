@@ -16,47 +16,51 @@ void audio_compressor_init(AudioCompressor_t * compressor) {
 }
 
 void gst_audio_dynamic_transform_compressor_float(
-		AudioCompressor_t * compressor, float * data, unsigned int num_samples) {
-	double val, threshold = compressor->threshold;
+		AudioCompressor_t * compressor, DSPfract * data, DSPint num_samples) {
+	DSPfract val, threshold = compressor->threshold;
 	int i;
 
 	/* Nothing to do for us if ratio == 1.0. */
-	if (compressor->ratio == 1.0)
+	if (compressor->ratio == FRACT_NUM(1.0))
 		return;
 
 	for (i = 0; i < num_samples; i++) {
 		val = data[i];
+		DSPfract negVal = val - threshold;
+		DSPfract posVal = val + threshold;
 
 		if (val > threshold) {
-			val = threshold + (val - threshold) * compressor->ratio;
+			val = threshold + negVal * compressor->ratio;
 		} else if (val < -threshold) {
-			val = -threshold + (val + threshold) * compressor->ratio;
+			val = -threshold + posVal * compressor->ratio;
 		}
-		data[i] = (float) val;
+		data[i] = (DSPfract) val;
 	}
 
 }
 
 // TODO: MAC
-void gst_audio_dynamic_transform_compressor_double(AudioCompressor_t * compressor, double * data, unsigned int num_samples)
+void gst_audio_dynamic_transform_compressor_double(AudioCompressor_t * compressor, DSPfract * data, DSPfract num_samples)
 {
-	long double val, threshold = compressor->threshold;
+	DSPaccum val, threshold = compressor->threshold;
 	int i;
 
 	/* Nothing to do for us if ratio == 1.0. */
-	if (compressor->ratio == 1.0)
+	if (compressor->ratio == FRACT_NUM(1.0))
 		return;
 
 	for (i = 0; i < num_samples; i++) {
 		val = data[i];
+		DSPfract negVal = val - threshold;
+		DSPfract posVal = val + threshold;
 
 		if (val > threshold) {
-			val = threshold + (val - threshold) * compressor->ratio;
+			val = threshold + negVal * compressor->ratio;
 		}
 		else if (val < -threshold) {
-			val = -threshold + (val + threshold) * compressor->ratio;
+			val = -threshold + posVal * compressor->ratio;
 		}
-		data[i] = (double)val;
+		data[i] = (DSPfract)val;
 	}
 
 }
