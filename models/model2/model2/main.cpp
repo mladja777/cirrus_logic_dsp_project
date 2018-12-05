@@ -29,7 +29,7 @@ DSPint MODE3_2_0_buffer_choice[] = { 0, 1, 2, 3, 4 };
 DSPint buffer_choice[3][5] = { { 0, 2, 0, 0, 0 }, { 3, 4, 0, 0, 0 }, { 0, 1, 2, 3, 4 } };
 
 // Default processing compressor parameters for this project
-DSPfract processing_compressor_threshold = FRACT_NUM(0.5);
+DSPfract processing_compressor_threshold = FRACT_NUM(0.1);
 DSPfract processing_compressor_ratio = FRACT_NUM(0.5);
 
 AudioCompressor_t processing_audio_compressor;
@@ -57,6 +57,7 @@ void processing()
 		for (i = 0; i < BLOCK_SIZE; i++)
 		{
 			*sbC = (*sbL) * processing_input_gain + (*sbR) * processing_input_gain;
+			//*sbC = (*sbC) >> 1;
 			sbR++;
 			sbR++;
 			sbC++;
@@ -68,6 +69,7 @@ void processing()
 		for (i = 0; i < BLOCK_SIZE; i++)
 		{
 			*sbC = (*sbC) * processing_headroom_gain;
+			//*sbC = (*sbC) >> 1;
 			sbC++;
 		}
 		sbC -= BLOCK_SIZE;
@@ -75,7 +77,9 @@ void processing()
 		for (i = 0; i < BLOCK_SIZE; i++)
 		{
 			*sbL = (*sbC) * gain6db_scaled;
+			//*sbL = (*sbL) >> 1;
 			*sbR = (*sbC) * gain6db_scaled;
+			//*sbR = (*sbR) >> 1;
 			sbL++;
 			sbR++;
 			sbC++;
@@ -99,10 +103,13 @@ void processing()
 		{
 			// sampleBuffer[3][i] = sampleBuffer[0][i] * processing_input_gain;
 			*sbLs = (*sbL) * processing_input_gain;
+			//*sbLs = (*sbLs) >> 1;
 			// sampleBuffer[4][i] = sampleBuffer[2][i] * processing_input_gain;
 			*sbRs = (*sbR) * processing_input_gain;
+			//*sbRs = (*sbRs) >> 1;
 			// sampleBuffer[1][i] = sampleBuffer[3][i] + sampleBuffer[4][i];
 			*sbC = (*sbLs) + (*sbRs);
+			//*sbC = (*sbC) >> 1;
 			// pointer increments
 			sbLs++;
 			sbL++;
@@ -126,6 +133,7 @@ void processing()
 		{
 			// sampleBuffer[1][i] = sampleBuffer[1][i] * processing_headroom_gain;
 			*sbC = (*sbC) * processing_headroom_gain;
+			//*sbC = (*sbC) >> 1;
 			sbC++;
 		}
 		// reseting sbC
@@ -136,8 +144,10 @@ void processing()
 		{
 			// sampleBuffer[0][i] = sampleBuffer[1][i] * gain6db_scaled;
 			*sbL = (*sbC) * gain6db_scaled;
+			//*sbL = (*sbL) >> 1;
 			// sampleBuffer[2][i] = sampleBuffer[1][i] * gain6db_scaled;
 			*sbR = (*sbC) * gain6db_scaled;
+			//*sbR = (*sbR) >> 1;
 			// ptr inc
 			sbL++;
 			sbR++;
@@ -153,8 +163,10 @@ void processing()
 		{
 			// sampleBuffer[3][i] = sampleBuffer[3][i] * gain2db_scaled;
 			*sbLs = (*sbLs) * gain2db_scaled;
+			//*sbLs = (*sbLs) >> 1;
 			// sampleBuffer[4][i] = sampleBuffer[4][i] * gain2db_scaled;
 			*sbRs = (*sbRs) * gain2db_scaled;
+			//*sbRs = (*sbRs) >> 1;
 			// inc ptr
 			sbLs++;
 			sbRs++;
@@ -222,13 +234,13 @@ DSPint main(DSPint argc, char* argv[])
 		{
 			// Input gain argv[4]
 			DSPint processing_gain_dB = atoi(argv[4]);
-			processing_input_gain = FRACT_NUM(pow(10.0, (processing_gain_dB / 20.0)));
+			processing_input_gain = pow(10.0, (processing_gain_dB / 20.0));
 
 			if (argc > 5)
 			{
 				// Headroom gain argv[5]
 				processing_gain_dB = atoi(argv[5]);
-				processing_headroom_gain = FRACT_NUM(pow(10.0, (processing_gain_dB / 20.0)));
+				processing_headroom_gain = pow(10.0, (processing_gain_dB / 20.0));
 
 				if (argc > 6)
 				{
@@ -274,7 +286,7 @@ DSPint main(DSPint argc, char* argv[])
 	{
 		DSPint sample;
 		DSPint BytesPerSample = inputWAVhdr.fmt.BitsPerSample/8;
-		const DSPfract SAMPLE_SCALE = -(DSPfract)(1 << 31);		//2^31
+		const double SAMPLE_SCALE = -(double)(1 << 31);		//2^31
 		DSPint iNumSamples = inputWAVhdr.data.SubChunk2Size/(inputWAVhdr.fmt.NumChannels*inputWAVhdr.fmt.BitsPerSample/8);
 		
 		// exact file length should be handled correctly...
@@ -287,7 +299,7 @@ DSPint main(DSPint argc, char* argv[])
 					sample = 0; //debug
 					fread(&sample, BytesPerSample, 1, wav_in);
 					sample = sample << (32 - inputWAVhdr.fmt.BitsPerSample); // force signextend
-					sampleBuffer[k][j] = FRACT_NUM(sample) / SAMPLE_SCALE;				// scale sample to 1.0/-1.0 range		
+					sampleBuffer[k][j] = FRACT_NUM(sample / SAMPLE_SCALE);				// scale sample to 1.0/-1.0 range		
 				}
 			}
 

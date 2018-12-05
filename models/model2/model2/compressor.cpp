@@ -11,8 +11,8 @@
 #include "compressor.h"
 
 void audio_compressor_init(AudioCompressor_t * compressor) {
-	compressor->ratio = 1.0;
-	compressor->threshold = 0.0;
+	compressor->ratio = FRACT_NUM(1.0);
+	compressor->threshold = FRACT_NUM(0.0);
 }
 
 void gst_audio_dynamic_transform_compressor_float(
@@ -30,9 +30,11 @@ void gst_audio_dynamic_transform_compressor_float(
 		DSPfract posVal = val + threshold;
 
 		if (val > threshold) {
-			val = threshold + negVal * compressor->ratio;
+			val = negVal * compressor->ratio;
+			val = val + threshold;
 		} else if (val < -threshold) {
-			val = -threshold + posVal * compressor->ratio;
+			val = posVal * compressor->ratio;
+			val = val - threshold;
 		}
 		data[i] = (DSPfract) val;
 	}
@@ -55,10 +57,12 @@ void gst_audio_dynamic_transform_compressor_double(AudioCompressor_t * compresso
 		DSPfract posVal = val + threshold;
 
 		if (val > threshold) {
-			val = threshold + negVal * compressor->ratio;
+			val = negVal * compressor->ratio;
+			val = val + threshold;
 		}
 		else if (val < -threshold) {
-			val = -threshold + posVal * compressor->ratio;
+			val = posVal * compressor->ratio;
+			val = val - threshold;
 		}
 		data[i] = (DSPfract)val;
 	}

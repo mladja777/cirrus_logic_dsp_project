@@ -1,4 +1,4 @@
 ﻿  main.cpp
-d:\ra44-2015-shared\aadsp2_project\cirrus_logic_dsp_project\models\model2\model2\main.cpp(219): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+d:\ra44-2015-shared\aadsp2_project\cirrus_logic_dsp_project\models\model2\model2\main.cpp(231): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
   model2.vcxproj -> D:\RA44-2015-SHARED\AADSP2_project\cirrus_logic_dsp_project\models\model2\Debug\model2.exe
   model2.vcxproj -> D:\RA44-2015-SHARED\AADSP2_project\cirrus_logic_dsp_project\models\model2\Debug\model2.pdb (Partial PDB)
