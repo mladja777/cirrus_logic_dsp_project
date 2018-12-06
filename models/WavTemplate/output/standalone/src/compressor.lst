@@ -1,0 +1,503 @@
+1     	 0000					.public _audio_compressor_init
+2     	 0000					.public _gst_audio_dynamic_transform_compressor_double
+3     	 0000					.public _gst_audio_dynamic_transform_compressor_float
+4     	 0000					.extern __int_to_fract
+5     	 0000					.extern __fract_to_ufract
+6     							.xdata_ovly
+6      >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+7     	 0000				__extractedConst_0_3
+8     	 0000					.dw  (0x7fffffff)
+	 0000	 7FFFFFFF	 
+9     							.code_ovly
+9      >> start of macro: .code_ovly
+1+    									seg_single , "CODE_OVLY", CODE
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_CODE_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "CODE_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_CODE_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .code_ovly
+10    						
+11    						
+12    						
+13    	 0000				_audio_compressor_init:			/* LN: 13 | CYCLE: 0 | RULES: () */ 
+14    	 0000	 BB540007		xmem[i7] = i7			# LN: 13 | 
+15    	 0001	 020F7FFF		i7 += 1			# LN: 13 | 
+16    	 0002	 87750001		i7 = i7 + (0x1)			# LN: 13 | 
+17    	 0003	 91750001		i1 = i7 - (0x1)			# LN: 13 | 
+18    	 0004	 B0540001		xmem[i1] = i0			# LN: 13 | 
+19    	 0005				cline_13_0:			/* LN: 14 | CYCLE: 0 | RULES: () */ 
+20    	 0005	 90750001		i0 = i7 - (0x1)			# LN: 14 | 
+21    	 0006	 B0140000		i0 = xmem[i0]			# LN: 14 | 
+22    	 0007	 88040000		a0 = xmem[__extractedConst_0_3 + 0]			# LN: 14 | 
+23    	 0008	 02087FFF		i0 += 1			# LN: 14 | 
+24    	 0009	 98540000		xmem[i0] = a0h			# LN: 14 | 
+25    	 000A				cline_14_0:			/* LN: 15 | CYCLE: 0 | RULES: () */ 
+26    	 000A	 90750001		i0 = i7 - (0x1)			# LN: 15 | 
+27    	 000B	 18404DC1		a0 = xmem[i0]; a1 = 0			# LN: 15, 15 | 
+28    	 000C	 98090030		AnyReg(i0, a0h)			# LN: 15 | 
+29    	 000D	 00007FFF		nop #empty cycle
+30    	 000E	 99540000		xmem[i0] = a1h			# LN: 15 | 
+31    	 000F				cline_15_0:			/* LN: 16 | CYCLE: 0 | RULES: () */ 
+32    	 000F	 80080010		jmp (__epilogue_104)			# LN: 16 | 
+33    	 0010				__epilogue_104:			/* LN: 16 | CYCLE: 0 | RULES: () */ 
+34    	 0010	 97750001		i7 = i7 - (0x1)			# LN: 16 | 
+35    	 0011	 02177FFF		i7 -= 1			# LN: 16 | 
+36    	 0012	 81880000		ret			# LN: 16 | 
+37    						
+38    						
+39    						
+40    	 0013				_gst_audio_dynamic_transform_compressor_double:			/* LN: 47 | CYCLE: 0 | RULES: () */ 
+41    	 0013	 BB540007		xmem[i7] = i7			# LN: 47 | 
+42    	 0014	 020F7FFF		i7 += 1			# LN: 47 | 
+43    	 0015	 8775000C		i7 = i7 + (0xc)			# LN: 47 | 
+44    	 0016	 94750001		i4 = i7 - (0x1)			# LN: 47 | 
+45    	 0017	 B0540004		xmem[i4] = i0			# LN: 47 | 
+46    	 0018	 90750002		i0 = i7 - (0x2)			# LN: 47 | 
+47    	 0019	 B1540000		xmem[i0] = i1			# LN: 47 | 
+48    	 001A	 90750003		i0 = i7 - (0x3)			# LN: 47 | 
+49    	 001B	 98540000		xmem[i0] = a0h			# LN: 47 | 
+50    	 001C				cline_47_0:			/* LN: 49 | CYCLE: 0 | RULES: () */ 
+51    	 001C	 90750001		i0 = i7 - (0x1)			# LN: 49 | 
+52    	 001D	 88140000		a0 = xmem[i0]			# LN: 49 | 
+53    	 001E	 98090030		AnyReg(i0, a0h)			# LN: 49 | 
+54    	 001F	 91750006		i1 = i7 - (0x6)			# LN: 49 | 
+55    	 0020	 88140000		a0 = xmem[i0]			# LN: 49 | 
+56    	 0021	 A0540011		xmem[i1] = a0g; i1 += 1			# LN: 49, 49 | 
+57    	 0022	 98540011		xmem[i1] = a0h; i1 += 1			# LN: 49, 49 | 
+58    	 0023	 90540001		xmem[i1] = a0l			# LN: 49 | 
+59    	 0024				cline_49_0:			/* LN: 55 | CYCLE: 0 | RULES: () */ 
+60    	 0024	 90750001		i0 = i7 - (0x1)			# LN: 55 | 
+61    	 0025	 B0140000		i0 = xmem[i0]			# LN: 55 | 
+62    	 0026	 88040000		a0 = xmem[__extractedConst_0_3 + 0]			# LN: 55 | 
+63    	 0027	 02087FFF		i0 += 1			# LN: 55 | 
+64    	 0028	 89140000		a1 = xmem[i0]			# LN: 55 | 
+65    	 0029	 00004F01		a1 - a0			# LN: 55 | 
+66    	 002A	 8448002C		if (a != 0) jmp (else_3)			# LN: 55 | 
+67    	 002B				cline_55_0:			/* LN: 56 | CYCLE: 0 | RULES: () */ 
+68    	 002B	 800800B9		jmp (__epilogue_108)			# LN: 56 | 
+69    	 002C				cline_56_0:			/* LN: 58 | CYCLE: 0 | RULES: () */ 
+70    	 002C				endif_3:			/* LN: 55 | CYCLE: 0 | RULES: () */ 
+71    	 002C				else_3:			/* LN: 55 | CYCLE: 0 | RULES: () */ 
+72    	 002C	 90750007		i0 = i7 - (0x7)			# LN: 58 | 
+73    	 002D	 00004DC0		a0 = 0			# LN: 58 | 
+74    	 002E	 98540000		xmem[i0] = a0h			# LN: 58 | 
+75    	 002F				for_1:			/* LN: 58 | CYCLE: 0 | RULES: () */ 
+76    	 002F	 90750007		i0 = i7 - (0x7)			# LN: 58 | 
+77    	 0030	 88140000		a0 = xmem[i0]			# LN: 58 | 
+78    	 0031	 90750003		i0 = i7 - (0x3)			# LN: 58 | 
+79    	 0032	 89140000		a1 = xmem[i0]			# LN: 58 | 
+80    	 0033	 80880000		call (__int_to_fract)			# LN: 58 | 
+81    	 0034	 00004C24		b0 =+ a0			# LN: 58 | 
+82    	 0035	 00004C08		a0 =+ a1			# LN: 58 | 
+83    	 0036	 80880000		call (__fract_to_ufract)			# LN: 58 | 
+84    	 0037	 00004F24		b0 - a0			# LN: 58 | 
+85    	 0038	 86C800B8		if (b >= 0) jmp (for_end_1)			# LN: 58 | 
+86    	 0039				cline_58_0:			/* LN: 59 | CYCLE: 0 | RULES: () */ 
+87    	 0039	 90750007		i0 = i7 - (0x7)			# LN: 59 | 
+88    	 003A	 88140000		a0 = xmem[i0]			# LN: 59 | 
+89    	 003B	 90750002		i0 = i7 - (0x2)			# LN: 59 | 
+90    	 003C	 89140000		a1 = xmem[i0]			# LN: 59 | 
+91    	 003D	 00004480		a0 = a1 + a0			# LN: 59 | 
+92    	 003E	 98090030		AnyReg(i0, a0h)			# LN: 59 | 
+93    	 003F	 9175000A		i1 = i7 - (0xa)			# LN: 59 | 
+94    	 0040	 88940000		a0 = ymem[i0]			# LN: 59 | 
+95    	 0041	 A0540011		xmem[i1] = a0g; i1 += 1			# LN: 59, 59 | 
+96    	 0042	 98540011		xmem[i1] = a0h; i1 += 1			# LN: 59, 59 | 
+97    	 0043	 90540001		xmem[i1] = a0l			# LN: 59 | 
+98    	 0044				cline_59_0:			/* LN: 60 | CYCLE: 0 | RULES: () */ 
+99    	 0044	 9075000A		i0 = i7 - (0xa)			# LN: 60 | 
+100   	 0045	 A0140010		a0g = xmem[i0]; i0 += 1			# LN: 60, 60 | 
+101   	 0046	 98140010		a0h = xmem[i0]; i0 += 1			# LN: 60, 60 | 
+102   	 0047	 90140000		a0l = xmem[i0]			# LN: 60 | 
+103   	 0048	 90750006		i0 = i7 - (0x6)			# LN: 60 | 
+104   	 0049	 A1140010		a1g = xmem[i0]; i0 += 1			# LN: 60, 60 | 
+105   	 004A	 99140010		a1h = xmem[i0]; i0 += 1			# LN: 60, 60 | 
+106   	 004B	 91140000		a1l = xmem[i0]			# LN: 60 | 
+107   	 004C	 00004448		a0 = a0 - a1			# LN: 60 | 
+108   	 004D	 9075000B		i0 = i7 - (0xb)			# LN: 60 | 
+109   	 004E	 88540000		xmem[i0] = a0			# LN: 60 | 
+110   	 004F				cline_60_0:			/* LN: 61 | CYCLE: 0 | RULES: () */ 
+111   	 004F	 9075000A		i0 = i7 - (0xa)			# LN: 61 | 
+112   	 0050	 A0140010		a0g = xmem[i0]; i0 += 1			# LN: 61, 61 | 
+113   	 0051	 98140010		a0h = xmem[i0]; i0 += 1			# LN: 61, 61 | 
+114   	 0052	 90140000		a0l = xmem[i0]			# LN: 61 | 
+115   	 0053	 90750006		i0 = i7 - (0x6)			# LN: 61 | 
+116   	 0054	 A1140010		a1g = xmem[i0]; i0 += 1			# LN: 61, 61 | 
+117   	 0055	 99140010		a1h = xmem[i0]; i0 += 1			# LN: 61, 61 | 
+118   	 0056	 91140000		a1l = xmem[i0]			# LN: 61 | 
+119   	 0057	 00004408		a0 = a0 + a1			# LN: 61 | 
+120   	 0058	 9075000C		i0 = i7 - (0xc)			# LN: 61 | 
+121   	 0059	 88540000		xmem[i0] = a0			# LN: 61 | 
+122   	 005A				cline_61_0:			/* LN: 63 | CYCLE: 0 | RULES: () */ 
+123   	 005A	 9075000A		i0 = i7 - (0xa)			# LN: 63 | 
+124   	 005B	 A0140010		a0g = xmem[i0]; i0 += 1			# LN: 63, 63 | 
+125   	 005C	 98140010		a0h = xmem[i0]; i0 += 1			# LN: 63, 63 | 
+126   	 005D	 90140000		a0l = xmem[i0]			# LN: 63 | 
+127   	 005E	 90750006		i0 = i7 - (0x6)			# LN: 63 | 
+128   	 005F	 A1140010		a1g = xmem[i0]; i0 += 1			# LN: 63, 63 | 
+129   	 0060	 99140010		a1h = xmem[i0]; i0 += 1			# LN: 63, 63 | 
+130   	 0061	 00004C24		b0 =+ a0			# LN: 63 | 
+131   	 0062	 91140000		a1l = xmem[i0]			# LN: 63 | 
+132   	 0063	 00004C08		a0 =+ a1			# LN: 63 | 
+133   	 0064	 00005E40		a0 = a0 >> 1; b0 = b0 >> 1			# LN: 63, 63 | 
+134   	 0065	 00004F24		b0 - a0			# LN: 63 | 
+135   	 0066	 87080080		if (b <= 0) jmp (else_4)			# LN: 63 | 
+136   	 0067				cline_63_0:			/* LN: 64 | CYCLE: 0 | RULES: () */ 
+137   	 0067	 90750001		i0 = i7 - (0x1)			# LN: 64 | 
+138   	 0068	 B0140000		i0 = xmem[i0]			# LN: 64 | 
+139   	 0069	 9175000B		i1 = i7 - (0xb)			# LN: 64 | 
+140   	 006A	 02087FFF		i0 += 1			# LN: 64 | 
+141   	 006B	 80140000		x0 = xmem[i0]			# LN: 64 | 
+142   	 006C	 81140001		x1 = xmem[i1]			# LN: 64 | 
+143   	 006D	 00002020		a0 = x1 * x0			# LN: 64 | 
+144   	 006E	 9075000A		i0 = i7 - (0xa)			# LN: 64 | 
+145   	 006F	 A0540010		xmem[i0] = a0g; i0 += 1			# LN: 64, 64 | 
+146   	 0070	 98540010		xmem[i0] = a0h; i0 += 1			# LN: 64, 64 | 
+147   	 0071	 90540000		xmem[i0] = a0l			# LN: 64 | 
+148   	 0072				cline_64_0:			/* LN: 65 | CYCLE: 0 | RULES: () */ 
+149   	 0072	 9075000A		i0 = i7 - (0xa)			# LN: 65 | 
+150   	 0073	 A0140010		a0g = xmem[i0]; i0 += 1			# LN: 65, 65 | 
+151   	 0074	 98140010		a0h = xmem[i0]; i0 += 1			# LN: 65, 65 | 
+152   	 0075	 90140000		a0l = xmem[i0]			# LN: 65 | 
+153   	 0076	 90750006		i0 = i7 - (0x6)			# LN: 65 | 
+154   	 0077	 A1140010		a1g = xmem[i0]; i0 += 1			# LN: 65, 65 | 
+155   	 0078	 99140010		a1h = xmem[i0]; i0 += 1			# LN: 65, 65 | 
+156   	 0079	 91140000		a1l = xmem[i0]			# LN: 65 | 
+157   	 007A	 00004408		a0 = a0 + a1			# LN: 65 | 
+158   	 007B	 9075000A		i0 = i7 - (0xa)			# LN: 65 | 
+159   	 007C	 A0540010		xmem[i0] = a0g; i0 += 1			# LN: 65, 65 | 
+160   	 007D	 98540010		xmem[i0] = a0h; i0 += 1			# LN: 65, 65 | 
+161   	 007E	 90540000		xmem[i0] = a0l			# LN: 65 | 
+162   	 007F	 800800A6		jmp (endif_4)			# LN: 65 | 
+163   	 0080				cline_65_0:			/* LN: 67 | CYCLE: 0 | RULES: () */ 
+164   	 0080				else_4:			/* LN: 63 | CYCLE: 0 | RULES: () */ 
+165   	 0080	 90750006		i0 = i7 - (0x6)			# LN: 67 | 
+166   	 0081	 A0140010		a0g = xmem[i0]; i0 += 1			# LN: 67, 67 | 
+167   	 0082	 98140010		a0h = xmem[i0]; i0 += 1			# LN: 67, 67 | 
+168   	 0083	 90140000		a0l = xmem[i0]			# LN: 67 | 
+169   	 0084	 9075000A		i0 = i7 - (0xa)			# LN: 67 | 
+170   	 0085	 A1140010		a1g = xmem[i0]; i0 += 1			# LN: 67, 67 | 
+171   	 0086	 99140010		a1h = xmem[i0]; i0 += 1			# LN: 67, 67 | 
+172   	 0087	 00004C80		a0 =- a0			# LN: 67 | 
+173   	 0088	 91140000		a1l = xmem[i0]			# LN: 67 | 
+174   	 0089	 00004C2C		b0 =+ a1			# LN: 67 | 
+175   	 008A	 00005E40		a0 = a0 >> 1; b0 = b0 >> 1			# LN: 67, 67 | 
+176   	 008B	 00004F24		b0 - a0			# LN: 67 | 
+177   	 008C	 86C800A6		if (b >= 0) jmp (else_5)			# LN: 67 | 
+178   	 008D				cline_67_0:			/* LN: 68 | CYCLE: 0 | RULES: () */ 
+179   	 008D	 90750001		i0 = i7 - (0x1)			# LN: 68 | 
+180   	 008E	 B0140000		i0 = xmem[i0]			# LN: 68 | 
+181   	 008F	 9175000C		i1 = i7 - (0xc)			# LN: 68 | 
+182   	 0090	 02087FFF		i0 += 1			# LN: 68 | 
+183   	 0091	 80140000		x0 = xmem[i0]			# LN: 68 | 
+184   	 0092	 81140001		x1 = xmem[i1]			# LN: 68 | 
+185   	 0093	 00002020		a0 = x1 * x0			# LN: 68 | 
+186   	 0094	 9075000A		i0 = i7 - (0xa)			# LN: 68 | 
+187   	 0095	 A0540010		xmem[i0] = a0g; i0 += 1			# LN: 68, 68 | 
+188   	 0096	 98540010		xmem[i0] = a0h; i0 += 1			# LN: 68, 68 | 
+189   	 0097	 90540000		xmem[i0] = a0l			# LN: 68 | 
+190   	 0098				cline_68_0:			/* LN: 69 | CYCLE: 0 | RULES: () */ 
+191   	 0098	 9075000A		i0 = i7 - (0xa)			# LN: 69 | 
+192   	 0099	 A0140010		a0g = xmem[i0]; i0 += 1			# LN: 69, 69 | 
+193   	 009A	 98140010		a0h = xmem[i0]; i0 += 1			# LN: 69, 69 | 
+194   	 009B	 90140000		a0l = xmem[i0]			# LN: 69 | 
+195   	 009C	 90750006		i0 = i7 - (0x6)			# LN: 69 | 
+196   	 009D	 A1140010		a1g = xmem[i0]; i0 += 1			# LN: 69, 69 | 
+197   	 009E	 99140010		a1h = xmem[i0]; i0 += 1			# LN: 69, 69 | 
+198   	 009F	 91140000		a1l = xmem[i0]			# LN: 69 | 
+199   	 00A0	 00004448		a0 = a0 - a1			# LN: 69 | 
+200   	 00A1	 9075000A		i0 = i7 - (0xa)			# LN: 69 | 
+201   	 00A2	 A0540010		xmem[i0] = a0g; i0 += 1			# LN: 69, 69 | 
+202   	 00A3	 98540010		xmem[i0] = a0h; i0 += 1			# LN: 69, 69 | 
+203   	 00A4	 90540000		xmem[i0] = a0l			# LN: 69 | 
+204   	 00A5	 800800A6		jmp (endif_5)			# LN: 69 | 
+205   	 00A6				cline_69_0:			/* LN: 71 | CYCLE: 0 | RULES: () */ 
+206   	 00A6				endif_4:			/* LN: 63 | CYCLE: 0 | RULES: () */ 
+207   	 00A6				endif_5:			/* LN: 67 | CYCLE: 0 | RULES: () */ 
+208   	 00A6				else_5:			/* LN: 67 | CYCLE: 0 | RULES: () */ 
+209   	 00A6	 90750007		i0 = i7 - (0x7)			# LN: 71 | 
+210   	 00A7	 88140000		a0 = xmem[i0]			# LN: 71 | 
+211   	 00A8	 90750002		i0 = i7 - (0x2)			# LN: 71 | 
+212   	 00A9	 89140000		a1 = xmem[i0]			# LN: 71 | 
+213   	 00AA	 00004480		a0 = a1 + a0			# LN: 71 | 
+214   	 00AB	 98090030		AnyReg(i0, a0h)			# LN: 71 | 
+215   	 00AC	 9175000A		i1 = i7 - (0xa)			# LN: 71 | 
+216   	 00AD	 A0140011		a0g = xmem[i1]; i1 += 1			# LN: 71, 71 | 
+217   	 00AE	 98140011		a0h = xmem[i1]; i1 += 1			# LN: 71, 71 | 
+218   	 00AF	 90140001		a0l = xmem[i1]			# LN: 71 | 
+219   	 00B0	 88D40000		ymem[i0] = a0			# LN: 71 | 
+220   	 00B1				cline_71_0:			/* LN: 58 | CYCLE: 0 | RULES: () */ 
+221   	 00B1				init_latch_label_1:			/* LN: 72 | CYCLE: 0 | RULES: () */ 
+222   	 00B1	 90750007		i0 = i7 - (0x7)			# LN: 58 | 
+223   	 00B2	 88140000		a0 = xmem[i0]			# LN: 58 | 
+224   	 00B3	 894A0001		uhalfword(a1) = (0x1)			# LN: 58 | 
+225   	 00B4	 00004408		a0 = a0 + a1			# LN: 58 | 
+226   	 00B5	 90750007		i0 = i7 - (0x7)			# LN: 58 | 
+227   	 00B6	 98540000		xmem[i0] = a0h			# LN: 58 | 
+228   	 00B7	 8008002F		jmp (for_1)			# LN: 58 | 
+229   	 00B8				cline_58_1:			/* LN: 74 | CYCLE: 0 | RULES: () */ 
+230   	 00B8				for_end_1:			/* LN: 58 | CYCLE: 0 | RULES: () */ 
+231   	 00B8	 800800B9		jmp (__epilogue_108)			# LN: 74 | 
+232   	 00B9				__epilogue_108:			/* LN: 74 | CYCLE: 0 | RULES: () */ 
+233   	 00B9	 9775000C		i7 = i7 - (0xc)			# LN: 74 | 
+234   	 00BA	 02177FFF		i7 -= 1			# LN: 74 | 
+235   	 00BB	 81880000		ret			# LN: 74 | 
+236   						
+237   						
+238   						
+239   	 00BC				_gst_audio_dynamic_transform_compressor_float:			/* LN: 18 | CYCLE: 0 | RULES: () */ 
+240   	 00BC	 BB540007		xmem[i7] = i7			# LN: 18 | 
+241   	 00BD	 020F7FFF		i7 += 1			# LN: 18 | 
+242   	 00BE	 87750008		i7 = i7 + (0x8)			# LN: 18 | 
+243   	 00BF	 94750001		i4 = i7 - (0x1)			# LN: 18 | 
+244   	 00C0	 B0540004		xmem[i4] = i0			# LN: 18 | 
+245   	 00C1	 90750002		i0 = i7 - (0x2)			# LN: 18 | 
+246   	 00C2	 B1540000		xmem[i0] = i1			# LN: 18 | 
+247   	 00C3	 90750003		i0 = i7 - (0x3)			# LN: 18 | 
+248   	 00C4	 98540000		xmem[i0] = a0h			# LN: 18 | 
+249   	 00C5				cline_18_0:			/* LN: 20 | CYCLE: 0 | RULES: () */ 
+250   	 00C5	 90750001		i0 = i7 - (0x1)			# LN: 20 | 
+251   	 00C6	 88140000		a0 = xmem[i0]			# LN: 20 | 
+252   	 00C7	 98090030		AnyReg(i0, a0h)			# LN: 20 | 
+253   	 00C8	 91750004		i1 = i7 - (0x4)			# LN: 20 | 
+254   	 00C9	 88140000		a0 = xmem[i0]			# LN: 20 | 
+255   	 00CA	 98540001		xmem[i1] = a0h			# LN: 20 | 
+256   	 00CB				cline_20_0:			/* LN: 26 | CYCLE: 0 | RULES: () */ 
+257   	 00CB	 90750001		i0 = i7 - (0x1)			# LN: 26 | 
+258   	 00CC	 B0140000		i0 = xmem[i0]			# LN: 26 | 
+259   	 00CD	 88040000		a0 = xmem[__extractedConst_0_3 + 0]			# LN: 26 | 
+260   	 00CE	 02087FFF		i0 += 1			# LN: 26 | 
+261   	 00CF	 89140000		a1 = xmem[i0]			# LN: 26 | 
+262   	 00D0	 00004F01		a1 - a0			# LN: 26 | 
+263   	 00D1	 844800D3		if (a != 0) jmp (else_0)			# LN: 26 | 
+264   	 00D2				cline_26_0:			/* LN: 27 | CYCLE: 0 | RULES: () */ 
+265   	 00D2	 80080133		jmp (__epilogue_106)			# LN: 27 | 
+266   	 00D3				cline_27_0:			/* LN: 29 | CYCLE: 0 | RULES: () */ 
+267   	 00D3				endif_0:			/* LN: 26 | CYCLE: 0 | RULES: () */ 
+268   	 00D3				else_0:			/* LN: 26 | CYCLE: 0 | RULES: () */ 
+269   	 00D3	 90750005		i0 = i7 - (0x5)			# LN: 29 | 
+270   	 00D4	 00004DC0		a0 = 0			# LN: 29 | 
+271   	 00D5	 98540000		xmem[i0] = a0h			# LN: 29 | 
+272   	 00D6				for_0:			/* LN: 29 | CYCLE: 0 | RULES: () */ 
+273   	 00D6	 90750005		i0 = i7 - (0x5)			# LN: 29 | 
+274   	 00D7	 88140000		a0 = xmem[i0]			# LN: 29 | 
+275   	 00D8	 90750003		i0 = i7 - (0x3)			# LN: 29 | 
+276   	 00D9	 89140000		a1 = xmem[i0]			# LN: 29 | 
+277   	 00DA	 00004F08		a0 - a1			# LN: 29 | 
+278   	 00DB	 84C80132		if (a >= 0) jmp (for_end_0)			# LN: 29 | 
+279   	 00DC				cline_29_0:			/* LN: 30 | CYCLE: 0 | RULES: () */ 
+280   	 00DC	 90750005		i0 = i7 - (0x5)			# LN: 30 | 
+281   	 00DD	 88140000		a0 = xmem[i0]			# LN: 30 | 
+282   	 00DE	 90750002		i0 = i7 - (0x2)			# LN: 30 | 
+283   	 00DF	 89140000		a1 = xmem[i0]			# LN: 30 | 
+284   	 00E0	 00004480		a0 = a1 + a0			# LN: 30 | 
+285   	 00E1	 98090030		AnyReg(i0, a0h)			# LN: 30 | 
+286   	 00E2	 91750006		i1 = i7 - (0x6)			# LN: 30 | 
+287   	 00E3	 88940000		a0 = ymem[i0]			# LN: 30 | 
+288   	 00E4	 98540001		xmem[i1] = a0h			# LN: 30 | 
+289   	 00E5				cline_30_0:			/* LN: 31 | CYCLE: 0 | RULES: () */ 
+290   	 00E5	 90750006		i0 = i7 - (0x6)			# LN: 31 | 
+291   	 00E6	 88140000		a0 = xmem[i0]			# LN: 31 | 
+292   	 00E7	 90750004		i0 = i7 - (0x4)			# LN: 31 | 
+293   	 00E8	 89140000		a1 = xmem[i0]			# LN: 31 | 
+294   	 00E9	 00004448		a0 = a0 - a1			# LN: 31 | 
+295   	 00EA	 90750007		i0 = i7 - (0x7)			# LN: 31 | 
+296   	 00EB	 98540000		xmem[i0] = a0h			# LN: 31 | 
+297   	 00EC				cline_31_0:			/* LN: 32 | CYCLE: 0 | RULES: () */ 
+298   	 00EC	 90750006		i0 = i7 - (0x6)			# LN: 32 | 
+299   	 00ED	 88140000		a0 = xmem[i0]			# LN: 32 | 
+300   	 00EE	 90750004		i0 = i7 - (0x4)			# LN: 32 | 
+301   	 00EF	 89140000		a1 = xmem[i0]			# LN: 32 | 
+302   	 00F0	 00004408		a0 = a0 + a1			# LN: 32 | 
+303   	 00F1	 90750008		i0 = i7 - (0x8)			# LN: 32 | 
+304   	 00F2	 98540000		xmem[i0] = a0h			# LN: 32 | 
+305   	 00F3				cline_32_0:			/* LN: 34 | CYCLE: 0 | RULES: () */ 
+306   	 00F3	 90750006		i0 = i7 - (0x6)			# LN: 34 | 
+307   	 00F4	 88140000		a0 = xmem[i0]			# LN: 34 | 
+308   	 00F5	 90750004		i0 = i7 - (0x4)			# LN: 34 | 
+309   	 00F6	 89140000		a1 = xmem[i0]			# LN: 34 | 
+310   	 00F7	 00004F08		a0 - a1			# LN: 34 | 
+311   	 00F8	 8508010A		if (a <= 0) jmp (else_1)			# LN: 34 | 
+312   	 00F9				cline_34_0:			/* LN: 35 | CYCLE: 0 | RULES: () */ 
+313   	 00F9	 90750001		i0 = i7 - (0x1)			# LN: 35 | 
+314   	 00FA	 B0140000		i0 = xmem[i0]			# LN: 35 | 
+315   	 00FB	 91750007		i1 = i7 - (0x7)			# LN: 35 | 
+316   	 00FC	 02087FFF		i0 += 1			# LN: 35 | 
+317   	 00FD	 80140000		x0 = xmem[i0]			# LN: 35 | 
+318   	 00FE	 81140001		x1 = xmem[i1]			# LN: 35 | 
+319   	 00FF	 00002020		a0 = x1 * x0			# LN: 35 | 
+320   	 0100	 90750006		i0 = i7 - (0x6)			# LN: 35 | 
+321   	 0101	 88540000		xmem[i0] = a0			# LN: 35 | 
+322   	 0102				cline_35_0:			/* LN: 36 | CYCLE: 0 | RULES: () */ 
+323   	 0102	 90750006		i0 = i7 - (0x6)			# LN: 36 | 
+324   	 0103	 88140000		a0 = xmem[i0]			# LN: 36 | 
+325   	 0104	 90750004		i0 = i7 - (0x4)			# LN: 36 | 
+326   	 0105	 89140000		a1 = xmem[i0]			# LN: 36 | 
+327   	 0106	 00004408		a0 = a0 + a1			# LN: 36 | 
+328   	 0107	 90750006		i0 = i7 - (0x6)			# LN: 36 | 
+329   	 0108	 98540000		xmem[i0] = a0h			# LN: 36 | 
+330   	 0109	 80080122		jmp (endif_1)			# LN: 36 | 
+331   	 010A				cline_36_0:			/* LN: 37 | CYCLE: 0 | RULES: () */ 
+332   	 010A				else_1:			/* LN: 34 | CYCLE: 0 | RULES: () */ 
+333   	 010A	 90750004		i0 = i7 - (0x4)			# LN: 37 | 
+334   	 010B	 88140000		a0 = xmem[i0]			# LN: 37 | 
+335   	 010C	 00004C80		a0 =- a0			# LN: 37 | 
+336   	 010D	 90750006		i0 = i7 - (0x6)			# LN: 37 | 
+337   	 010E	 89140000		a1 = xmem[i0]			# LN: 37 | 
+338   	 010F	 00004F01		a1 - a0			# LN: 37 | 
+339   	 0110	 84C80122		if (a >= 0) jmp (else_2)			# LN: 37 | 
+340   	 0111				cline_37_0:			/* LN: 38 | CYCLE: 0 | RULES: () */ 
+341   	 0111	 90750001		i0 = i7 - (0x1)			# LN: 38 | 
+342   	 0112	 B0140000		i0 = xmem[i0]			# LN: 38 | 
+343   	 0113	 91750008		i1 = i7 - (0x8)			# LN: 38 | 
+344   	 0114	 02087FFF		i0 += 1			# LN: 38 | 
+345   	 0115	 80140000		x0 = xmem[i0]			# LN: 38 | 
+346   	 0116	 81140001		x1 = xmem[i1]			# LN: 38 | 
+347   	 0117	 00002020		a0 = x1 * x0			# LN: 38 | 
+348   	 0118	 90750006		i0 = i7 - (0x6)			# LN: 38 | 
+349   	 0119	 88540000		xmem[i0] = a0			# LN: 38 | 
+350   	 011A				cline_38_0:			/* LN: 39 | CYCLE: 0 | RULES: () */ 
+351   	 011A	 90750006		i0 = i7 - (0x6)			# LN: 39 | 
+352   	 011B	 88140000		a0 = xmem[i0]			# LN: 39 | 
+353   	 011C	 90750004		i0 = i7 - (0x4)			# LN: 39 | 
+354   	 011D	 89140000		a1 = xmem[i0]			# LN: 39 | 
+355   	 011E	 00004448		a0 = a0 - a1			# LN: 39 | 
+356   	 011F	 90750006		i0 = i7 - (0x6)			# LN: 39 | 
+357   	 0120	 98540000		xmem[i0] = a0h			# LN: 39 | 
+358   	 0121	 80080122		jmp (endif_2)			# LN: 39 | 
+359   	 0122				cline_39_0:			/* LN: 41 | CYCLE: 0 | RULES: () */ 
+360   	 0122				endif_1:			/* LN: 34 | CYCLE: 0 | RULES: () */ 
+361   	 0122				endif_2:			/* LN: 37 | CYCLE: 0 | RULES: () */ 
+362   	 0122				else_2:			/* LN: 37 | CYCLE: 0 | RULES: () */ 
+363   	 0122	 90750005		i0 = i7 - (0x5)			# LN: 41 | 
+364   	 0123	 88140000		a0 = xmem[i0]			# LN: 41 | 
+365   	 0124	 90750002		i0 = i7 - (0x2)			# LN: 41 | 
+366   	 0125	 89140000		a1 = xmem[i0]			# LN: 41 | 
+367   	 0126	 00004480		a0 = a1 + a0			# LN: 41 | 
+368   	 0127	 98090030		AnyReg(i0, a0h)			# LN: 41 | 
+369   	 0128	 91750006		i1 = i7 - (0x6)			# LN: 41 | 
+370   	 0129	 88140001		a0 = xmem[i1]			# LN: 41 | 
+371   	 012A	 98D40000		ymem[i0] = a0h			# LN: 41 | 
+372   	 012B				cline_41_0:			/* LN: 29 | CYCLE: 0 | RULES: () */ 
+373   	 012B				init_latch_label_0:			/* LN: 42 | CYCLE: 0 | RULES: () */ 
+374   	 012B	 90750005		i0 = i7 - (0x5)			# LN: 29 | 
+375   	 012C	 88140000		a0 = xmem[i0]			# LN: 29 | 
+376   	 012D	 894A0001		uhalfword(a1) = (0x1)			# LN: 29 | 
+377   	 012E	 00004408		a0 = a0 + a1			# LN: 29 | 
+378   	 012F	 90750005		i0 = i7 - (0x5)			# LN: 29 | 
+379   	 0130	 98540000		xmem[i0] = a0h			# LN: 29 | 
+380   	 0131	 800800D6		jmp (for_0)			# LN: 29 | 
+381   	 0132				cline_29_1:			/* LN: 44 | CYCLE: 0 | RULES: () */ 
+382   	 0132				for_end_0:			/* LN: 29 | CYCLE: 0 | RULES: () */ 
+383   	 0132	 80080133		jmp (__epilogue_106)			# LN: 44 | 
+384   	 0133				__epilogue_106:			/* LN: 44 | CYCLE: 0 | RULES: () */ 
+385   	 0133	 97750008		i7 = i7 - (0x8)			# LN: 44 | 
+386   	 0134	 02177FFF		i7 -= 1			# LN: 44 | 
+387   	 0135	 81880000		ret			# LN: 44 | 
+388   						(null)
+				 SYMBOL TABLE 
+
+    Name                                                                                    Type                  Value 
+
+_COMMON_INC_PATH_                                                               					 Define                 "C:/CirrusDSP/crystal32/common/inc/"
+_DSP_                                                                           					 Define                 "a"
+_LOCAL_INC_PATH_                                                                					 Define                 "inc/"
+_LOCAL_SRC_PATH_                                                                					 Define                 "src/"
+_MUI_VERSION_                                                                   					 Define                 "020000"
+_OVLY_                                                                          					 Define                 "standalone"
+_OVLY_REVISION_                                                                 					 Define                 "020000"
+_ROUTER_INC_PATH_                                                               					 Define                 "rom_inc/"
+_SLOT_                                                                          					 Define                 "0"
+_TARGET_FAMILY_                                                                 					 Define                 "crystal32"
+_TOOLS_VERSION_                                                                 					 Define                 "0x0701"
+_VERSION_                                                                       					 Define                 "00"
+__CASM_VER__                                                                    			  Unused Variable		        0 (701H)
+__epilogue_104                                                                  			         Relocatable         compressor_GEN_0001:0010H
+__epilogue_106                                                                  			         Relocatable         compressor_GEN_0001:0133H
+__epilogue_108                                                                  			         Relocatable         compressor_GEN_0001:00B9H
+__extractedConst_0_3                                                            			         Relocatable         compressor_GEN_0000:0000H
+__fract_to_ufract                                                               					 External   
+__int_to_fract                                                                  					 External   
+_audio_compressor_init                                                          			  Public Relocatable       compressor_GEN_0001:0000H
+_gst_audio_dynamic_transform_compressor_double                                  			  Public Relocatable       compressor_GEN_0001:0013H
+_gst_audio_dynamic_transform_compressor_float                                   			  Public Relocatable       compressor_GEN_0001:00BCH
+cline_13_0                                                                      			  Unused Relocatable        compressor_GEN_0001:0005H
+cline_14_0                                                                      			  Unused Relocatable        compressor_GEN_0001:000AH
+cline_15_0                                                                      			  Unused Relocatable        compressor_GEN_0001:000FH
+cline_18_0                                                                      			  Unused Relocatable        compressor_GEN_0001:00C5H
+cline_20_0                                                                      			  Unused Relocatable        compressor_GEN_0001:00CBH
+cline_26_0                                                                      			  Unused Relocatable        compressor_GEN_0001:00D2H
+cline_27_0                                                                      			  Unused Relocatable        compressor_GEN_0001:00D3H
+cline_29_0                                                                      			  Unused Relocatable        compressor_GEN_0001:00DCH
+cline_29_1                                                                      			  Unused Relocatable        compressor_GEN_0001:0132H
+cline_30_0                                                                      			  Unused Relocatable        compressor_GEN_0001:00E5H
+cline_31_0                                                                      			  Unused Relocatable        compressor_GEN_0001:00ECH
+cline_32_0                                                                      			  Unused Relocatable        compressor_GEN_0001:00F3H
+cline_34_0                                                                      			  Unused Relocatable        compressor_GEN_0001:00F9H
+cline_35_0                                                                      			  Unused Relocatable        compressor_GEN_0001:0102H
+cline_36_0                                                                      			  Unused Relocatable        compressor_GEN_0001:010AH
+cline_37_0                                                                      			  Unused Relocatable        compressor_GEN_0001:0111H
+cline_38_0                                                                      			  Unused Relocatable        compressor_GEN_0001:011AH
+cline_39_0                                                                      			  Unused Relocatable        compressor_GEN_0001:0122H
+cline_41_0                                                                      			  Unused Relocatable        compressor_GEN_0001:012BH
+cline_47_0                                                                      			  Unused Relocatable        compressor_GEN_0001:001CH
+cline_49_0                                                                      			  Unused Relocatable        compressor_GEN_0001:0024H
+cline_55_0                                                                      			  Unused Relocatable        compressor_GEN_0001:002BH
+cline_56_0                                                                      			  Unused Relocatable        compressor_GEN_0001:002CH
+cline_58_0                                                                      			  Unused Relocatable        compressor_GEN_0001:0039H
+cline_58_1                                                                      			  Unused Relocatable        compressor_GEN_0001:00B8H
+cline_59_0                                                                      			  Unused Relocatable        compressor_GEN_0001:0044H
+cline_60_0                                                                      			  Unused Relocatable        compressor_GEN_0001:004FH
+cline_61_0                                                                      			  Unused Relocatable        compressor_GEN_0001:005AH
+cline_63_0                                                                      			  Unused Relocatable        compressor_GEN_0001:0067H
+cline_64_0                                                                      			  Unused Relocatable        compressor_GEN_0001:0072H
+cline_65_0                                                                      			  Unused Relocatable        compressor_GEN_0001:0080H
+cline_67_0                                                                      			  Unused Relocatable        compressor_GEN_0001:008DH
+cline_68_0                                                                      			  Unused Relocatable        compressor_GEN_0001:0098H
+cline_69_0                                                                      			  Unused Relocatable        compressor_GEN_0001:00A6H
+cline_71_0                                                                      			  Unused Relocatable        compressor_GEN_0001:00B1H
+else_0                                                                          			         Relocatable         compressor_GEN_0001:00D3H
+else_1                                                                          			         Relocatable         compressor_GEN_0001:010AH
+else_2                                                                          			         Relocatable         compressor_GEN_0001:0122H
+else_3                                                                          			         Relocatable         compressor_GEN_0001:002CH
+else_4                                                                          			         Relocatable         compressor_GEN_0001:0080H
+else_5                                                                          			         Relocatable         compressor_GEN_0001:00A6H
+endif_0                                                                         			  Unused Relocatable        compressor_GEN_0001:00D3H
+endif_1                                                                         			         Relocatable         compressor_GEN_0001:0122H
+endif_2                                                                         			         Relocatable         compressor_GEN_0001:0122H
+endif_3                                                                         			  Unused Relocatable        compressor_GEN_0001:002CH
+endif_4                                                                         			         Relocatable         compressor_GEN_0001:00A6H
+endif_5                                                                         			         Relocatable         compressor_GEN_0001:00A6H
+for_0                                                                           			         Relocatable         compressor_GEN_0001:00D6H
+for_1                                                                           			         Relocatable         compressor_GEN_0001:002FH
+for_end_0                                                                       			         Relocatable         compressor_GEN_0001:0132H
+for_end_1                                                                       			         Relocatable         compressor_GEN_0001:00B8H
+init_latch_label_0                                                              			  Unused Relocatable        compressor_GEN_0001:012BH
+init_latch_label_1                                                              			  Unused Relocatable        compressor_GEN_0001:00B1H
+
+	       SEGMENTS:
+
+Size			  Name										 Class
+0000H	 __INIT                                  			 CODE                                    
+0001H	 compressor_GEN_0000                     			 X_OVLY                                  
+0136H	 compressor_GEN_0001                     			 CODE_OVLY                               

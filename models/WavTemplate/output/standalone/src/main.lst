@@ -1,0 +1,1577 @@
+1     	 0000					.public _buffer_choice
+2     	 0000					.public _gain2db_scaled
+3     	 0000					.public _gain6db_scaled
+4     	 0000					.public _output_channels
+5     	 0000					.public _processing_audio_compressor
+6     	 0000					.public _processing_compressor_ratio
+7     	 0000					.public _processing_compressor_threshold
+8     	 0000					.public _processing_headroom_gain
+9     	 0000					.public _processing_input_gain
+10    	 0000					.public _processing_output_mode
+11    	 0000					.public _sampleBuffer
+12    	 0000					.extern _cl_wavread_bits_per_sample
+13    	 0000					.extern _cl_wavread_close
+14    	 0000					.extern _cl_wavread_frame_rate
+15    	 0000					.extern _cl_wavread_getnchannels
+16    	 0000					.extern _cl_wavread_number_of_frames
+17    	 0000					.extern _cl_wavread_open
+18    	 0000					.extern _cl_wavread_recvsample
+19    	 0000					.extern _cl_wavwrite_close
+20    	 0000					.extern _cl_wavwrite_open
+21    	 0000					.extern _cl_wavwrite_sendsample
+22    	 0000					.extern _gst_audio_dynamic_transform_compressor_double
+23    	 0000					.public _main
+24    	 0000					.extern _printf
+25    	 0000					.public _processing
+26    	 0000					.extern _strcpy
+27    	 0000					.extern __div
+28    							.xdata_ovly
+28     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+29    	 0000				__extractedConst_0_2
+30    	 0000					.dw  (0x7fffffff)
+	 0000	 7FFFFFFF	 
+31    							.xdata_ovly
+31     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+32    	 0000				_buffer_choice
+33    	 0000					.dw  (0x0)
+	 0000	 00000000	 
+34    	 0001					.dw  (0x2)
+	 0001	 00000002	 
+35    	 0002					.dw  (0x0)
+	 0002	 00000000	 
+36    	 0003					.dw  (0x0)
+	 0003	 00000000	 
+37    	 0004					.dw  (0x0)
+	 0004	 00000000	 
+38    	 0005					.dw  (0x3)
+	 0005	 00000003	 
+39    	 0006					.dw  (0x4)
+	 0006	 00000004	 
+40    	 0007					.dw  (0x0)
+	 0007	 00000000	 
+41    	 0008					.dw  (0x0)
+	 0008	 00000000	 
+42    	 0009					.dw  (0x0)
+	 0009	 00000000	 
+43    	 000A					.dw  (0x0)
+	 000A	 00000000	 
+44    	 000B					.dw  (0x1)
+	 000B	 00000001	 
+45    	 000C					.dw  (0x2)
+	 000C	 00000002	 
+46    	 000D					.dw  (0x3)
+	 000D	 00000003	 
+47    	 000E					.dw  (0x4)
+	 000E	 00000004	 
+48    							.xdata_ovly
+48     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+49    	 0000				_gain2db_scaled
+50    	 0000					.dw  (0x65ac8a37)
+	 0000	 65AC8A37	 
+51    							.xdata_ovly
+51     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+52    	 0000				_gain6db_scaled
+53    	 0000					.dw  (0x4026e547)
+	 0000	 4026E547	 
+54    							.xdata_ovly
+54     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+55    	 0000				_output_channels
+56    	 0000					.dw  (0x2)
+	 0000	 00000002	 
+57    	 0001					.dw  (0x2)
+	 0001	 00000002	 
+58    	 0002					.dw  (0x5)
+	 0002	 00000005	 
+59    							.xdata_ovly
+59     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+60    	 0000				_processing_audio_compressor
+61    	 0000					.bss (0x2)
+62    							.xdata_ovly
+62     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+63    	 0000				_processing_compressor_ratio
+64    	 0000					.dw  (0x40000000)
+	 0000	 40000000	 
+65    							.xdata_ovly
+65     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+66    	 0000				_processing_compressor_threshold
+67    	 0000					.dw  (0xccccccd)
+	 0000	 0CCCCCCD	 
+68    							.xdata_ovly
+68     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+69    	 0000				_processing_headroom_gain
+70    	 0000					.dw  (0x5a9df97b)
+	 0000	 5A9DF97B	 
+71    							.xdata_ovly
+71     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+72    	 0000				_processing_input_gain
+73    	 0000					.dw  (0x4026e547)
+	 0000	 4026E547	 
+74    							.xdata_ovly
+74     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+75    	 0000				_processing_output_mode
+76    	 0000					.dw  (0x2)
+	 0000	 00000002	 
+77    							.ydata_ovly
+77     >> start of macro: .ydata_ovly
+1+    									seg_single , "Y_OVLY", Y
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_Y_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "Y_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_Y_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .ydata_ovly
+78    	 0000				_sampleBuffer
+79    	 0000					.bss (0x80)
+80    							.xdata_ovly
+80     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+81    	 0000				_string_const_0
+82    	 0000					.dw  (0x45)
+	 0000	 00000045	 
+83    	 0001					.dw  (0x72)
+	 0001	 00000072	 
+84    	 0002					.dw  (0x72)
+	 0002	 00000072	 
+85    	 0003					.dw  (0x6f)
+	 0003	 0000006F	 
+86    	 0004					.dw  (0x72)
+	 0004	 00000072	 
+87    	 0005					.dw  (0x3a)
+	 0005	 0000003A	 
+88    	 0006					.dw  (0x20)
+	 0006	 00000020	 
+89    	 0007					.dw  (0x43)
+	 0007	 00000043	 
+90    	 0008					.dw  (0x6f)
+	 0008	 0000006F	 
+91    	 0009					.dw  (0x75)
+	 0009	 00000075	 
+92    	 000A					.dw  (0x6c)
+	 000A	 0000006C	 
+93    	 000B					.dw  (0x64)
+	 000B	 00000064	 
+94    	 000C					.dw  (0x20)
+	 000C	 00000020	 
+95    	 000D					.dw  (0x6e)
+	 000D	 0000006E	 
+96    	 000E					.dw  (0x6f)
+	 000E	 0000006F	 
+97    	 000F					.dw  (0x74)
+	 000F	 00000074	 
+98    	 0010					.dw  (0x20)
+	 0010	 00000020	 
+99    	 0011					.dw  (0x6f)
+	 0011	 0000006F	 
+100   	 0012					.dw  (0x70)
+	 0012	 00000070	 
+101   	 0013					.dw  (0x65)
+	 0013	 00000065	 
+102   	 0014					.dw  (0x6e)
+	 0014	 0000006E	 
+103   	 0015					.dw  (0x20)
+	 0015	 00000020	 
+104   	 0016					.dw  (0x77)
+	 0016	 00000077	 
+105   	 0017					.dw  (0x61)
+	 0017	 00000061	 
+106   	 0018					.dw  (0x76)
+	 0018	 00000076	 
+107   	 0019					.dw  (0x65)
+	 0019	 00000065	 
+108   	 001A					.dw  (0x66)
+	 001A	 00000066	 
+109   	 001B					.dw  (0x69)
+	 001B	 00000069	 
+110   	 001C					.dw  (0x6c)
+	 001C	 0000006C	 
+111   	 001D					.dw  (0x65)
+	 001D	 00000065	 
+112   	 001E					.dw  (0x2e)
+	 001E	 0000002E	 
+113   	 001F					.dw  (0xa)
+	 001F	 0000000A	 
+114   	 0020					.dw  (0x0)
+	 0020	 00000000	 
+115   							.xdata_ovly
+115    >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+116   	 0000				_string_const_1
+117   	 0000					.dw  (0x45)
+	 0000	 00000045	 
+118   	 0001					.dw  (0x72)
+	 0001	 00000072	 
+119   	 0002					.dw  (0x72)
+	 0002	 00000072	 
+120   	 0003					.dw  (0x6f)
+	 0003	 0000006F	 
+121   	 0004					.dw  (0x72)
+	 0004	 00000072	 
+122   	 0005					.dw  (0x3a)
+	 0005	 0000003A	 
+123   	 0006					.dw  (0x20)
+	 0006	 00000020	 
+124   	 0007					.dw  (0x43)
+	 0007	 00000043	 
+125   	 0008					.dw  (0x6f)
+	 0008	 0000006F	 
+126   	 0009					.dw  (0x75)
+	 0009	 00000075	 
+127   	 000A					.dw  (0x6c)
+	 000A	 0000006C	 
+128   	 000B					.dw  (0x64)
+	 000B	 00000064	 
+129   	 000C					.dw  (0x20)
+	 000C	 00000020	 
+130   	 000D					.dw  (0x6e)
+	 000D	 0000006E	 
+131   	 000E					.dw  (0x6f)
+	 000E	 0000006F	 
+132   	 000F					.dw  (0x74)
+	 000F	 00000074	 
+133   	 0010					.dw  (0x20)
+	 0010	 00000020	 
+134   	 0011					.dw  (0x6f)
+	 0011	 0000006F	 
+135   	 0012					.dw  (0x70)
+	 0012	 00000070	 
+136   	 0013					.dw  (0x65)
+	 0013	 00000065	 
+137   	 0014					.dw  (0x6e)
+	 0014	 0000006E	 
+138   	 0015					.dw  (0x20)
+	 0015	 00000020	 
+139   	 0016					.dw  (0x77)
+	 0016	 00000077	 
+140   	 0017					.dw  (0x61)
+	 0017	 00000061	 
+141   	 0018					.dw  (0x76)
+	 0018	 00000076	 
+142   	 0019					.dw  (0x65)
+	 0019	 00000065	 
+143   	 001A					.dw  (0x66)
+	 001A	 00000066	 
+144   	 001B					.dw  (0x69)
+	 001B	 00000069	 
+145   	 001C					.dw  (0x6c)
+	 001C	 0000006C	 
+146   	 001D					.dw  (0x65)
+	 001D	 00000065	 
+147   	 001E					.dw  (0x2e)
+	 001E	 0000002E	 
+148   	 001F					.dw  (0xa)
+	 001F	 0000000A	 
+149   	 0020					.dw  (0x0)
+	 0020	 00000000	 
+150   							.code_ovly
+150    >> start of macro: .code_ovly
+1+    									seg_single , "CODE_OVLY", CODE
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_CODE_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "CODE_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_CODE_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .code_ovly
+151   						
+152   						
+153   						
+154   							# This construction should ensure linking of crt0 in case when target is a standalone program without the OS
+155   							.if defined(_OVLY_)
+156   								.if .strcmp('standalone',_OVLY_)=0
+157   								.if .strcmp('crystal32',_TARGET_FAMILY_)=0
+158   	 0000							.extern __start         # dummy use of __start to force linkage of crt0
+159   	 0000				dummy		.equ(__start)
+160   								.else
+161   									.extern __intvec         # dummy use of __intvec to force linkage of intvec
+162   						dummy		.equ(__intvec)
+163   								.endif
+164   								.endif
+165   							.endif
+166   						
+167   	 0000				_main:			/* LN: 165 | CYCLE: 0 | RULES: () */ 
+168   	 0000	 BB540007		xmem[i7] = i7			# LN: 165 | 
+169   	 0001	 020F7FFF		i7 += 1			# LN: 165 | 
+170   	 0002	 8775020D		i7 = i7 + (0x20d)			# LN: 165 | 
+171   	 0003	 91750001		i1 = i7 - (0x1)			# LN: 165 | 
+172   	 0004	 98540001		xmem[i1] = a0h			# LN: 165 | 
+173   	 0005	 91750002		i1 = i7 - (0x2)			# LN: 165 | 
+174   	 0006	 B0540001		xmem[i1] = i0			# LN: 165 | 
+175   	 0007				cline_165_0:			/* LN: 174 | CYCLE: 0 | RULES: () */ 
+176   	 0007	 88040000		a0 = xmem[_processing_output_mode + 0]			# LN: 174 | 
+177   	 0008	 48707FFF		i0 = a0			# LN: 174 | 
+178   	 0009	 91750003		i1 = i7 - (0x3)			# LN: 174 | 
+179   	 000A	 80050000		i0 = i0 + (_output_channels + 0)			# LN: 174 | 
+180   	 000B	 88140000		a0 = xmem[i0]			# LN: 174 | 
+181   	 000C	 98540001		xmem[i1] = a0h			# LN: 174 | 
+182   	 000D				cline_174_0:			/* LN: 183 | CYCLE: 0 | RULES: () */ 
+183   	 000D	 90750004		i0 = i7 - (0x4)			# LN: 183 | 
+184   	 000E	 00004DC0		a0 = 0			# LN: 183 | 
+185   	 000F	 98540000		xmem[i0] = a0h			# LN: 183 | 
+186   	 0010				for_8:			/* LN: 183 | CYCLE: 0 | RULES: () */ 
+187   	 0010	 90750004		i0 = i7 - (0x4)			# LN: 183 | 
+188   	 0011	 88140000		a0 = xmem[i0]			# LN: 183 | 
+189   	 0012	 894A0008		uhalfword(a1) = (0x8)			# LN: 183 | 
+190   	 0013	 00004F08		a0 - a1			# LN: 183 | 
+191   	 0014	 84C80037		if (a >= 0) jmp (for_end_8)			# LN: 183 | 
+192   	 0015				cline_183_0:			/* LN: 185 | CYCLE: 0 | RULES: () */ 
+193   	 0015	 90750005		i0 = i7 - (0x5)			# LN: 185 | 
+194   	 0016	 00004DC0		a0 = 0			# LN: 185 | 
+195   	 0017	 98540000		xmem[i0] = a0h			# LN: 185 | 
+196   	 0018				for_9:			/* LN: 185 | CYCLE: 0 | RULES: () */ 
+197   	 0018	 90750004		i0 = i7 - (0x4)			# LN: 185 | 
+198   	 0019	 88140000		a0 = xmem[i0]			# LN: 185 | 
+199   	 001A	 894A0008		uhalfword(a1) = (0x8)			# LN: 185 | 
+200   	 001B	 00004F08		a0 - a1			# LN: 185 | 
+201   	 001C	 84C80030		if (a >= 0) jmp (for_end_9)			# LN: 185 | 
+202   	 001D				cline_185_0:			/* LN: 187 | CYCLE: 0 | RULES: () */ 
+203   	 001D	 90750004		i0 = i7 - (0x4)			# LN: 187 | 
+204   	 001E	 18404DC1		a0 = xmem[i0]; a1 = 0			# LN: 187, 187 | 
+205   	 001F	 00004EC0		a0 = a0 << 4			# LN: 187 | 
+206   	 0020	 48707FFF		i0 = a0			# LN: 187 | 
+207   	 0021	 91750005		i1 = i7 - (0x5)			# LN: 187 | 
+208   	 0022	 80050000		i0 = i0 + (_sampleBuffer + 0)			# LN: 187 | 
+209   	 0023	 88140001		a0 = xmem[i1]			# LN: 187 | 
+210   	 0024	 0C707FFF		b0 = i0			# LN: 187 | 
+211   	 0025	 00004420		a0 = a0 + b0			# LN: 187 | 
+212   	 0026	 98090030		AnyReg(i0, a0h)			# LN: 187 | 
+213   	 0027	 00007FFF		nop #empty cycle
+214   	 0028	 99D40000		ymem[i0] = a1h			# LN: 187 | 
+215   	 0029				cline_187_0:			/* LN: 185 | CYCLE: 0 | RULES: () */ 
+216   	 0029				init_latch_label_8:			/* LN: 188 | CYCLE: 0 | RULES: () */ 
+217   	 0029	 90750004		i0 = i7 - (0x4)			# LN: 185 | 
+218   	 002A	 88140000		a0 = xmem[i0]			# LN: 185 | 
+219   	 002B	 894A0001		uhalfword(a1) = (0x1)			# LN: 185 | 
+220   	 002C	 00004408		a0 = a0 + a1			# LN: 185 | 
+221   	 002D	 90750004		i0 = i7 - (0x4)			# LN: 185 | 
+222   	 002E	 98540000		xmem[i0] = a0h			# LN: 185 | 
+223   	 002F	 80080018		jmp (for_9)			# LN: 185 | 
+224   	 0030				cline_185_1:			/* LN: 183 | CYCLE: 0 | RULES: () */ 
+225   	 0030				init_latch_label_9:			/* LN: 189 | CYCLE: 0 | RULES: () */ 
+226   	 0030				for_end_9:			/* LN: 185 | CYCLE: 0 | RULES: () */ 
+227   	 0030	 90750004		i0 = i7 - (0x4)			# LN: 183 | 
+228   	 0031	 88140000		a0 = xmem[i0]			# LN: 183 | 
+229   	 0032	 894A0001		uhalfword(a1) = (0x1)			# LN: 183 | 
+230   	 0033	 00004408		a0 = a0 + a1			# LN: 183 | 
+231   	 0034	 90750004		i0 = i7 - (0x4)			# LN: 183 | 
+232   	 0035	 98540000		xmem[i0] = a0h			# LN: 183 | 
+233   	 0036	 80080010		jmp (for_8)			# LN: 183 | 
+234   	 0037				cline_183_1:			/* LN: 193 | CYCLE: 0 | RULES: () */ 
+235   	 0037				for_end_8:			/* LN: 183 | CYCLE: 0 | RULES: () */ 
+236   	 0037	 90750002		i0 = i7 - (0x2)			# LN: 193 | 
+237   	 0038	 B0140000		i0 = xmem[i0]			# LN: 193 | 
+238   	 0039	 91750105		i1 = i7 - (261 - 0)			# LN: 193 | 
+239   	 003A	 B8140000		i4 = xmem[i0]			# LN: 193 | 
+240   	 003B	 B1090030		i0 = i1			# LN: 193 | 
+241   	 003C	 B8090031		i1 = i4			# LN: 193 | 
+242   	 003D	 80880000		call (_strcpy)			# LN: 193 | 
+243   	 003E				cline_193_0:			/* LN: 194 | CYCLE: 0 | RULES: () */ 
+244   	 003E	 90750105		i0 = i7 - (261 - 0)			# LN: 194 | 
+245   	 003F	 80880000		call (_cl_wavread_open)			# LN: 194 | 
+246   	 0040	 98090030		AnyReg(i0, a0h)			# LN: 194 | 
+247   	 0041	 91750106		i1 = i7 - (0x106)			# LN: 194 | 
+248   	 0042	 B0540001		xmem[i1] = i0			# LN: 194 | 
+249   	 0043				cline_194_0:			/* LN: 195 | CYCLE: 0 | RULES: () */ 
+250   	 0043	 90750106		i0 = i7 - (0x106)			# LN: 195 | 
+251   	 0044	 88140000		a0 = xmem[i0]			# LN: 195 | 
+252   	 0045	 00004E80		a0 & a0			# LN: 195 | 
+253   	 0046	 8448004B		if (a != 0) jmp (else_1)			# LN: 195 | 
+254   	 0047				cline_195_0:			/* LN: 197 | CYCLE: 0 | RULES: () */ 
+255   	 0047	 A0050000		i0 = (0) + (_string_const_0)			# LN: 197 | 
+256   	 0048	 80880000		call (_printf)			# LN: 197 | 
+257   	 0049				cline_197_0:			/* LN: 198 | CYCLE: 0 | RULES: () */ 
+258   	 0049	 886AFFFF		halfword(a0) = (0xffff)			# LN: 198 | 
+259   	 004A	 800800ED		jmp (__epilogue_228)			# LN: 198 | 
+260   	 004B				cline_198_0:			/* LN: 204 | CYCLE: 0 | RULES: () */ 
+261   	 004B				endif_1:			/* LN: 195 | CYCLE: 0 | RULES: () */ 
+262   	 004B				else_1:			/* LN: 195 | CYCLE: 0 | RULES: () */ 
+263   	 004B	 90750106		i0 = i7 - (0x106)			# LN: 204 | 
+264   	 004C	 B0140000		i0 = xmem[i0]			# LN: 204 | 
+265   	 004D	 80880000		call (_cl_wavread_getnchannels)			# LN: 204 | 
+266   	 004E	 90750107		i0 = i7 - (0x107)			# LN: 204 | 
+267   	 004F	 98540000		xmem[i0] = a0h			# LN: 204 | 
+268   	 0050				cline_204_0:			/* LN: 205 | CYCLE: 0 | RULES: () */ 
+269   	 0050	 90750106		i0 = i7 - (0x106)			# LN: 205 | 
+270   	 0051	 B0140000		i0 = xmem[i0]			# LN: 205 | 
+271   	 0052	 80880000		call (_cl_wavread_bits_per_sample)			# LN: 205 | 
+272   	 0053	 90750108		i0 = i7 - (0x108)			# LN: 205 | 
+273   	 0054	 98540000		xmem[i0] = a0h			# LN: 205 | 
+274   	 0055				cline_205_0:			/* LN: 206 | CYCLE: 0 | RULES: () */ 
+275   	 0055	 90750106		i0 = i7 - (0x106)			# LN: 206 | 
+276   	 0056	 B0140000		i0 = xmem[i0]			# LN: 206 | 
+277   	 0057	 80880000		call (_cl_wavread_frame_rate)			# LN: 206 | 
+278   	 0058	 90750109		i0 = i7 - (0x109)			# LN: 206 | 
+279   	 0059	 98540000		xmem[i0] = a0h			# LN: 206 | 
+280   	 005A				cline_206_0:			/* LN: 207 | CYCLE: 0 | RULES: () */ 
+281   	 005A	 90750106		i0 = i7 - (0x106)			# LN: 207 | 
+282   	 005B	 B0140000		i0 = xmem[i0]			# LN: 207 | 
+283   	 005C	 80880000		call (_cl_wavread_number_of_frames)			# LN: 207 | 
+284   	 005D	 9075010A		i0 = i7 - (0x10a)			# LN: 207 | 
+285   	 005E	 98540000		xmem[i0] = a0h			# LN: 207 | 
+286   	 005F				cline_207_0:			/* LN: 212 | CYCLE: 0 | RULES: () */ 
+287   	 005F	 90750002		i0 = i7 - (0x2)			# LN: 212 | 
+288   	 0060	 B0140000		i0 = xmem[i0]			# LN: 212 | 
+289   	 0061	 9175020A		i1 = i7 - (522 - 0)			# LN: 212 | 
+290   	 0062	 02087FFF		i0 += 1			# LN: 212 | 
+291   	 0063	 B8140000		i4 = xmem[i0]			# LN: 212 | 
+292   	 0064	 B1090030		i0 = i1			# LN: 212 | 
+293   	 0065	 B8090031		i1 = i4			# LN: 212 | 
+294   	 0066	 80880000		call (_strcpy)			# LN: 212 | 
+295   	 0067				cline_212_0:			/* LN: 213 | CYCLE: 0 | RULES: () */ 
+296   	 0067	 9075020A		i0 = i7 - (522 - 0)			# LN: 213 | 
+297   	 0068	 91750108		i1 = i7 - (0x108)			# LN: 213 | 
+298   	 0069	 88140001		a0 = xmem[i1]			# LN: 213 | 
+299   	 006A	 91750003		i1 = i7 - (0x3)			# LN: 213 | 
+300   	 006B	 89140001		a1 = xmem[i1]			# LN: 213 | 
+301   	 006C	 91750109		i1 = i7 - (0x109)			# LN: 213 | 
+302   	 006D	 8C140001		b0 = xmem[i1]			# LN: 213 | 
+303   	 006E	 80880000		call (_cl_wavwrite_open)			# LN: 213 | 
+304   	 006F	 98090030		AnyReg(i0, a0h)			# LN: 213 | 
+305   	 0070	 9175020B		i1 = i7 - (0x20b)			# LN: 213 | 
+306   	 0071	 B0540001		xmem[i1] = i0			# LN: 213 | 
+307   	 0072				cline_213_0:			/* LN: 214 | CYCLE: 0 | RULES: () */ 
+308   	 0072	 9075020B		i0 = i7 - (0x20b)			# LN: 214 | 
+309   	 0073	 88140000		a0 = xmem[i0]			# LN: 214 | 
+310   	 0074	 00004E80		a0 & a0			# LN: 214 | 
+311   	 0075	 8448007A		if (a != 0) jmp (else_2)			# LN: 214 | 
+312   	 0076				cline_214_0:			/* LN: 216 | CYCLE: 0 | RULES: () */ 
+313   	 0076	 A0050000		i0 = (0) + (_string_const_1)			# LN: 216 | 
+314   	 0077	 80880000		call (_printf)			# LN: 216 | 
+315   	 0078				cline_216_0:			/* LN: 217 | CYCLE: 0 | RULES: () */ 
+316   	 0078	 886AFFFF		halfword(a0) = (0xffff)			# LN: 217 | 
+317   	 0079	 800800ED		jmp (__epilogue_228)			# LN: 217 | 
+318   	 007A				cline_217_0:			/* LN: 228 | CYCLE: 0 | RULES: () */ 
+319   	 007A				endif_2:			/* LN: 214 | CYCLE: 0 | RULES: () */ 
+320   	 007A				else_2:			/* LN: 214 | CYCLE: 0 | RULES: () */ 
+321   	 007A	 90750004		i0 = i7 - (0x4)			# LN: 228 | 
+322   	 007B	 00004DC0		a0 = 0			# LN: 228 | 
+323   	 007C	 98540000		xmem[i0] = a0h			# LN: 228 | 
+324   	 007D				for_10:			/* LN: 228 | CYCLE: 0 | RULES: () */ 
+325   	 007D	 9075010A		i0 = i7 - (0x10a)			# LN: 228 | 
+326   	 007E	 88140000		a0 = xmem[i0]			# LN: 228 | 
+327   	 007F	 894A0010		uhalfword(a1) = (0x10)			# LN: 228 | 
+328   	 0080	 80880000		call (__div)			# LN: 228 | 
+329   	 0081	 90750004		i0 = i7 - (0x4)			# LN: 228 | 
+330   	 0082	 89140000		a1 = xmem[i0]			# LN: 228 | 
+331   	 0083	 00004F01		a1 - a0			# LN: 228 | 
+332   	 0084	 84C800E5		if (a >= 0) jmp (for_end_10)			# LN: 228 | 
+333   	 0085				cline_228_0:			/* LN: 230 | CYCLE: 0 | RULES: () */ 
+334   	 0085	 90750005		i0 = i7 - (0x5)			# LN: 230 | 
+335   	 0086	 00004DC0		a0 = 0			# LN: 230 | 
+336   	 0087	 98540000		xmem[i0] = a0h			# LN: 230 | 
+337   	 0088	 810000B0		do (0x10), label_end_100			# LN: 230 | 
+338   	 0089				cline_230_0:			/* LN: 232 | CYCLE: 0 | RULES: () */ 
+339   	 0089				label_begin_100:			/* LN: 230 | CYCLE: 0 | RULES: () */ 
+340   	 0089	 9075020C		i0 = i7 - (0x20c)			# LN: 232 | 
+341   	 008A	 00004DC0		a0 = 0			# LN: 232 | 
+342   	 008B	 98540000		xmem[i0] = a0h			# LN: 232 | 
+343   	 008C				for_12:			/* LN: 232 | CYCLE: 0 | RULES: () */ 
+344   	 008C	 9075020C		i0 = i7 - (0x20c)			# LN: 232 | 
+345   	 008D	 88140000		a0 = xmem[i0]			# LN: 232 | 
+346   	 008E	 90750107		i0 = i7 - (0x107)			# LN: 232 | 
+347   	 008F	 89140000		a1 = xmem[i0]			# LN: 232 | 
+348   	 0090	 00004F08		a0 - a1			# LN: 232 | 
+349   	 0091	 84C800AB		if (a >= 0) jmp (for_end_12)			# LN: 232 | 
+350   	 0092				cline_232_0:			/* LN: 234 | CYCLE: 0 | RULES: () */ 
+351   	 0092	 90750106		i0 = i7 - (0x106)			# LN: 234 | 
+352   	 0093	 B0140000		i0 = xmem[i0]			# LN: 234 | 
+353   	 0094	 80880000		call (_cl_wavread_recvsample)			# LN: 234 | 
+354   	 0095	 9075020D		i0 = i7 - (0x20d)			# LN: 234 | 
+355   	 0096	 98540000		xmem[i0] = a0h			# LN: 234 | 
+356   	 0097				cline_234_0:			/* LN: 235 | CYCLE: 0 | RULES: () */ 
+357   	 0097	 9075020C		i0 = i7 - (0x20c)			# LN: 235 | 
+358   	 0098	 88140000		a0 = xmem[i0]			# LN: 235 | 
+359   	 0099	 00004EC0		a0 = a0 << 4			# LN: 235 | 
+360   	 009A	 48707FFF		i0 = a0			# LN: 235 | 
+361   	 009B	 91750005		i1 = i7 - (0x5)			# LN: 235 | 
+362   	 009C	 80050000		i0 = i0 + (_sampleBuffer + 0)			# LN: 235 | 
+363   	 009D	 88140001		a0 = xmem[i1]			# LN: 235 | 
+364   	 009E	 09707FFF		a1 = i0			# LN: 235 | 
+365   	 009F	 00004480		a0 = a1 + a0			# LN: 235 | 
+366   	 00A0	 98090030		AnyReg(i0, a0h)			# LN: 235 | 
+367   	 00A1	 9175020D		i1 = i7 - (0x20d)			# LN: 235 | 
+368   	 00A2	 88140001		a0 = xmem[i1]			# LN: 235 | 
+369   	 00A3	 98D40000		ymem[i0] = a0h			# LN: 235 | 
+370   	 00A4				cline_235_0:			/* LN: 232 | CYCLE: 0 | RULES: () */ 
+371   	 00A4				init_latch_label_10:			/* LN: 236 | CYCLE: 0 | RULES: () */ 
+372   	 00A4	 9075020C		i0 = i7 - (0x20c)			# LN: 232 | 
+373   	 00A5	 88140000		a0 = xmem[i0]			# LN: 232 | 
+374   	 00A6	 894A0001		uhalfword(a1) = (0x1)			# LN: 232 | 
+375   	 00A7	 00004408		a0 = a0 + a1			# LN: 232 | 
+376   	 00A8	 9075020C		i0 = i7 - (0x20c)			# LN: 232 | 
+377   	 00A9	 98540000		xmem[i0] = a0h			# LN: 232 | 
+378   	 00AA	 8008008C		jmp (for_12)			# LN: 232 | 
+379   	 00AB				cline_232_1:			/* LN: 230 | CYCLE: 0 | RULES: () */ 
+380   	 00AB				init_latch_label_11:			/* LN: 237 | CYCLE: 0 | RULES: () */ 
+381   	 00AB				for_end_12:			/* LN: 232 | CYCLE: 0 | RULES: () */ 
+382   	 00AB	 90750005		i0 = i7 - (0x5)			# LN: 230 | 
+383   	 00AC	 88140000		a0 = xmem[i0]			# LN: 230 | 
+384   	 00AD	 894A0001		uhalfword(a1) = (0x1)			# LN: 230 | 
+385   	 00AE	 00004408		a0 = a0 + a1			# LN: 230 | 
+386   	 00AF	 90750005		i0 = i7 - (0x5)			# LN: 230 | 
+387   	 00B0				label_end_100:			# LN: 230 | CYCLE: 5 | RULES: ()
+388   	 00B0	 98540000		xmem[i0] = a0h			# LN: 230 | 
+389   	 00B1				cline_230_1:			/* LN: 239 | CYCLE: 0 | RULES: () */ 
+390   	 00B1				for_end_11:			/* LN: 230 | CYCLE: 0 | RULES: () */ 
+391   	 00B1	 808800F0		call (_processing)			# LN: 239 | 
+392   	 00B2				cline_239_0:			/* LN: 241 | CYCLE: 0 | RULES: () */ 
+393   	 00B2	 90750005		i0 = i7 - (0x5)			# LN: 241 | 
+394   	 00B3	 00004DC0		a0 = 0			# LN: 241 | 
+395   	 00B4	 98540000		xmem[i0] = a0h			# LN: 241 | 
+396   	 00B5	 810000DD		do (0x10), label_end_101			# LN: 241 | 
+397   	 00B6				cline_241_0:			/* LN: 243 | CYCLE: 0 | RULES: () */ 
+398   	 00B6				label_begin_101:			/* LN: 241 | CYCLE: 0 | RULES: () */ 
+399   	 00B6	 9075020C		i0 = i7 - (0x20c)			# LN: 243 | 
+400   	 00B7	 00004DC0		a0 = 0			# LN: 243 | 
+401   	 00B8	 98540000		xmem[i0] = a0h			# LN: 243 | 
+402   	 00B9				for_14:			/* LN: 243 | CYCLE: 0 | RULES: () */ 
+403   	 00B9	 9075020C		i0 = i7 - (0x20c)			# LN: 243 | 
+404   	 00BA	 88140000		a0 = xmem[i0]			# LN: 243 | 
+405   	 00BB	 90750003		i0 = i7 - (0x3)			# LN: 243 | 
+406   	 00BC	 89140000		a1 = xmem[i0]			# LN: 243 | 
+407   	 00BD	 00004F08		a0 - a1			# LN: 243 | 
+408   	 00BE	 84C800D8		if (a >= 0) jmp (for_end_14)			# LN: 243 | 
+409   	 00BF				cline_243_0:			/* LN: 245 | CYCLE: 0 | RULES: () */ 
+410   	 00BF	 9075020C		i0 = i7 - (0x20c)			# LN: 245 | 
+411   	 00C0	 88140000		a0 = xmem[i0]			# LN: 245 | 
+412   	 00C1	 00004EC0		a0 = a0 << 4			# LN: 245 | 
+413   	 00C2	 48707FFF		i0 = a0			# LN: 245 | 
+414   	 00C3	 91750005		i1 = i7 - (0x5)			# LN: 245 | 
+415   	 00C4	 80050000		i0 = i0 + (_sampleBuffer + 0)			# LN: 245 | 
+416   	 00C5	 88140001		a0 = xmem[i1]			# LN: 245 | 
+417   	 00C6	 09707FFF		a1 = i0			# LN: 245 | 
+418   	 00C7	 00004480		a0 = a1 + a0			# LN: 245 | 
+419   	 00C8	 98090030		AnyReg(i0, a0h)			# LN: 245 | 
+420   	 00C9	 9175020D		i1 = i7 - (0x20d)			# LN: 245 | 
+421   	 00CA	 88940000		a0 = ymem[i0]			# LN: 245 | 
+422   	 00CB	 98540001		xmem[i1] = a0h			# LN: 245 | 
+423   	 00CC				cline_245_0:			/* LN: 246 | CYCLE: 0 | RULES: () */ 
+424   	 00CC	 9075020B		i0 = i7 - (0x20b)			# LN: 246 | 
+425   	 00CD	 9175020D		i1 = i7 - (0x20d)			# LN: 246 | 
+426   	 00CE	 88140001		a0 = xmem[i1]			# LN: 246 | 
+427   	 00CF	 B0140000		i0 = xmem[i0]			# LN: 246 | 
+428   	 00D0	 80880000		call (_cl_wavwrite_sendsample)			# LN: 246 | 
+429   	 00D1				cline_246_0:			/* LN: 243 | CYCLE: 0 | RULES: () */ 
+430   	 00D1				init_latch_label_12:			/* LN: 247 | CYCLE: 0 | RULES: () */ 
+431   	 00D1	 9075020C		i0 = i7 - (0x20c)			# LN: 243 | 
+432   	 00D2	 88140000		a0 = xmem[i0]			# LN: 243 | 
+433   	 00D3	 894A0001		uhalfword(a1) = (0x1)			# LN: 243 | 
+434   	 00D4	 00004408		a0 = a0 + a1			# LN: 243 | 
+435   	 00D5	 9075020C		i0 = i7 - (0x20c)			# LN: 243 | 
+436   	 00D6	 98540000		xmem[i0] = a0h			# LN: 243 | 
+437   	 00D7	 800800B9		jmp (for_14)			# LN: 243 | 
+438   	 00D8				cline_243_1:			/* LN: 241 | CYCLE: 0 | RULES: () */ 
+439   	 00D8				init_latch_label_13:			/* LN: 248 | CYCLE: 0 | RULES: () */ 
+440   	 00D8				for_end_14:			/* LN: 243 | CYCLE: 0 | RULES: () */ 
+441   	 00D8	 90750005		i0 = i7 - (0x5)			# LN: 241 | 
+442   	 00D9	 88140000		a0 = xmem[i0]			# LN: 241 | 
+443   	 00DA	 894A0001		uhalfword(a1) = (0x1)			# LN: 241 | 
+444   	 00DB	 00004408		a0 = a0 + a1			# LN: 241 | 
+445   	 00DC	 90750005		i0 = i7 - (0x5)			# LN: 241 | 
+446   	 00DD				label_end_101:			# LN: 241 | CYCLE: 5 | RULES: ()
+447   	 00DD	 98540000		xmem[i0] = a0h			# LN: 241 | 
+448   	 00DE				cline_241_1:			/* LN: 228 | CYCLE: 0 | RULES: () */ 
+449   	 00DE				init_latch_label_14:			/* LN: 249 | CYCLE: 0 | RULES: () */ 
+450   	 00DE				for_end_13:			/* LN: 241 | CYCLE: 0 | RULES: () */ 
+451   	 00DE	 90750004		i0 = i7 - (0x4)			# LN: 228 | 
+452   	 00DF	 88140000		a0 = xmem[i0]			# LN: 228 | 
+453   	 00E0	 894A0001		uhalfword(a1) = (0x1)			# LN: 228 | 
+454   	 00E1	 00004408		a0 = a0 + a1			# LN: 228 | 
+455   	 00E2	 90750004		i0 = i7 - (0x4)			# LN: 228 | 
+456   	 00E3	 98540000		xmem[i0] = a0h			# LN: 228 | 
+457   	 00E4	 8008007D		jmp (for_10)			# LN: 228 | 
+458   	 00E5				cline_228_1:			/* LN: 254 | CYCLE: 0 | RULES: () */ 
+459   	 00E5				for_end_10:			/* LN: 228 | CYCLE: 0 | RULES: () */ 
+460   	 00E5	 90750106		i0 = i7 - (0x106)			# LN: 254 | 
+461   	 00E6	 B0140000		i0 = xmem[i0]			# LN: 254 | 
+462   	 00E7	 80880000		call (_cl_wavread_close)			# LN: 254 | 
+463   	 00E8				cline_254_0:			/* LN: 255 | CYCLE: 0 | RULES: () */ 
+464   	 00E8	 9075020B		i0 = i7 - (0x20b)			# LN: 255 | 
+465   	 00E9	 B0140000		i0 = xmem[i0]			# LN: 255 | 
+466   	 00EA	 80880000		call (_cl_wavwrite_close)			# LN: 255 | 
+467   	 00EB				cline_255_0:			/* LN: 258 | CYCLE: 0 | RULES: () */ 
+468   	 00EB	 00004DC0		a0 = 0			# LN: 258 | 
+469   	 00EC	 800800ED		jmp (__epilogue_228)			# LN: 258 | 
+470   	 00ED				cline_258_0:			/* LN: 259 | CYCLE: 0 | RULES: () */ 
+471   	 00ED				__epilogue_228:			/* LN: 259 | CYCLE: 0 | RULES: () */ 
+472   	 00ED	 9775020D		i7 = i7 - (0x20d)			# LN: 259 | 
+473   	 00EE	 02177FFF		i7 -= 1			# LN: 259 | 
+474   	 00EF	 81880000		ret			# LN: 259 | 
+475   						
+476   						
+477   						
+478   	 00F0				_processing:			/* LN: 33 | CYCLE: 0 | RULES: () */ 
+479   	 00F0	 BB540007		xmem[i7] = i7			# LN: 33 | 
+480   	 00F1	 020F7FFF		i7 += 1			# LN: 33 | 
+481   	 00F2	 8775000A		i7 = i7 + (0xa)			# LN: 33 | 
+482   	 00F3				cline_33_0:			/* LN: 36 | CYCLE: 0 | RULES: () */ 
+483   	 00F3	 88040000		a0 = xmem[_processing_output_mode + 0]			# LN: 36 | 
+484   	 00F4	 894A0001		uhalfword(a1) = (0x1)			# LN: 36 | 
+485   	 00F5	 00004F08		a0 - a1			# LN: 36 | 
+486   	 00F6	 84480189		if (a != 0) jmp (else_0)			# LN: 36 | 
+487   	 00F7				cline_36_0:			/* LN: 38 | CYCLE: 0 | RULES: () */ 
+488   	 00F7	 90750001		i0 = i7 - (0x1)			# LN: 38 | 
+489   	 00F8	 884A0000		uhalfword(a0) = (_sampleBuffer + 0)			# LN: 38 | 
+490   	 00F9	 88540000		xmem[i0] = a0			# LN: 38 | 
+491   	 00FA				cline_38_0:			/* LN: 39 | CYCLE: 0 | RULES: () */ 
+492   	 00FA	 90750002		i0 = i7 - (0x2)			# LN: 39 | 
+493   	 00FB	 884A0010		uhalfword(a0) = (_sampleBuffer + 16)			# LN: 39 | 
+494   	 00FC	 88540000		xmem[i0] = a0			# LN: 39 | 
+495   	 00FD				cline_39_0:			/* LN: 40 | CYCLE: 0 | RULES: () */ 
+496   	 00FD	 90750003		i0 = i7 - (0x3)			# LN: 40 | 
+497   	 00FE	 884A0020		uhalfword(a0) = (_sampleBuffer + 32)			# LN: 40 | 
+498   	 00FF	 88540000		xmem[i0] = a0			# LN: 40 | 
+499   	 0100				cline_40_0:			/* LN: 43 | CYCLE: 0 | RULES: () */ 
+500   	 0100	 90750004		i0 = i7 - (0x4)			# LN: 43 | 
+501   	 0101	 00004DC0		a0 = 0			# LN: 43 | 
+502   	 0102	 98540000		xmem[i0] = a0h			# LN: 43 | 
+503   	 0103	 81000124		do (0x10), label_end_92			# LN: 43 | 
+504   	 0104				cline_43_0:			/* LN: 45 | CYCLE: 0 | RULES: () */ 
+505   	 0104				label_begin_92:			/* LN: 43 | CYCLE: 0 | RULES: () */ 
+506   	 0104	 90750001		i0 = i7 - (0x1)			# LN: 45 | 
+507   	 0105	 B0140000		i0 = xmem[i0]			# LN: 45 | 
+508   	 0106	 91750003		i1 = i7 - (0x3)			# LN: 45 | 
+509   	 0107	 80940000		x0 = ymem[i0]			# LN: 45 | 
+510   	 0108	 B0140001		i0 = xmem[i1]			# LN: 45 | 
+511   	 0109	 81040000		x1 = xmem[_processing_input_gain + 0]			# LN: 45 | 
+512   	 010A	 20402080		x0 = ymem[i0]; a0 = x0 * x1			# LN: 45, 45 | 
+513   	 010B	 81040000		x1 = xmem[_processing_input_gain + 0]			# LN: 45 | 
+514   	 010C	 90750002		i0 = i7 - (0x2)			# LN: 45 | 
+515   	 010D	 B0140000		i0 = xmem[i0]			# LN: 45 | 
+516   	 010E	 00002088		a0 += x0 * x1			# LN: 45 | 
+517   	 010F	 88D40000		ymem[i0] = a0			# LN: 45 | 
+518   	 0110				cline_45_0:			/* LN: 46 | CYCLE: 0 | RULES: () */ 
+519   	 0110	 90750003		i0 = i7 - (0x3)			# LN: 46 | 
+520   	 0111	 B0140000		i0 = xmem[i0]			# LN: 46 | 
+521   	 0112	 91750003		i1 = i7 - (0x3)			# LN: 46 | 
+522   	 0113	 02087FFF		i0 += 1			# LN: 46 | 
+523   	 0114	 B0540001		xmem[i1] = i0			# LN: 46 | 
+524   	 0115				cline_46_0:			/* LN: 47 | CYCLE: 0 | RULES: () */ 
+525   	 0115	 90750001		i0 = i7 - (0x1)			# LN: 47 | 
+526   	 0116	 B0140000		i0 = xmem[i0]			# LN: 47 | 
+527   	 0117	 91750001		i1 = i7 - (0x1)			# LN: 47 | 
+528   	 0118	 02087FFF		i0 += 1			# LN: 47 | 
+529   	 0119	 B0540001		xmem[i1] = i0			# LN: 47 | 
+530   	 011A				cline_47_0:			/* LN: 48 | CYCLE: 0 | RULES: () */ 
+531   	 011A	 90750002		i0 = i7 - (0x2)			# LN: 48 | 
+532   	 011B	 B0140000		i0 = xmem[i0]			# LN: 48 | 
+533   	 011C	 91750002		i1 = i7 - (0x2)			# LN: 48 | 
+534   	 011D	 02087FFF		i0 += 1			# LN: 48 | 
+535   	 011E	 B0540001		xmem[i1] = i0			# LN: 48 | 
+536   	 011F				cline_48_0:			/* LN: 43 | CYCLE: 0 | RULES: () */ 
+537   	 011F				init_latch_label_0:			/* LN: 49 | CYCLE: 0 | RULES: () */ 
+538   	 011F	 90750004		i0 = i7 - (0x4)			# LN: 43 | 
+539   	 0120	 88140000		a0 = xmem[i0]			# LN: 43 | 
+540   	 0121	 894A0001		uhalfword(a1) = (0x1)			# LN: 43 | 
+541   	 0122	 00004408		a0 = a0 + a1			# LN: 43 | 
+542   	 0123	 90750004		i0 = i7 - (0x4)			# LN: 43 | 
+543   	 0124				label_end_92:			# LN: 43 | CYCLE: 5 | RULES: ()
+544   	 0124	 98540000		xmem[i0] = a0h			# LN: 43 | 
+545   	 0125				cline_43_1:			/* LN: 50 | CYCLE: 0 | RULES: () */ 
+546   	 0125				for_end_0:			/* LN: 43 | CYCLE: 0 | RULES: () */ 
+547   	 0125	 90750001		i0 = i7 - (0x1)			# LN: 50 | 
+548   	 0126	 B0140000		i0 = xmem[i0]			# LN: 50 | 
+549   	 0127	 91750001		i1 = i7 - (0x1)			# LN: 50 | 
+550   	 0128	 90050010		i0 = i0 - (0x10)			# LN: 50 | 
+551   	 0129	 B0540001		xmem[i1] = i0			# LN: 50 | 
+552   	 012A				cline_50_0:			/* LN: 51 | CYCLE: 0 | RULES: () */ 
+553   	 012A	 90750002		i0 = i7 - (0x2)			# LN: 51 | 
+554   	 012B	 B0140000		i0 = xmem[i0]			# LN: 51 | 
+555   	 012C	 91750002		i1 = i7 - (0x2)			# LN: 51 | 
+556   	 012D	 90050010		i0 = i0 - (0x10)			# LN: 51 | 
+557   	 012E	 B0540001		xmem[i1] = i0			# LN: 51 | 
+558   	 012F				cline_51_0:			/* LN: 52 | CYCLE: 0 | RULES: () */ 
+559   	 012F	 90750003		i0 = i7 - (0x3)			# LN: 52 | 
+560   	 0130	 B0140000		i0 = xmem[i0]			# LN: 52 | 
+561   	 0131	 91750003		i1 = i7 - (0x3)			# LN: 52 | 
+562   	 0132	 90050010		i0 = i0 - (0x10)			# LN: 52 | 
+563   	 0133	 B0540001		xmem[i1] = i0			# LN: 52 | 
+564   	 0134				cline_52_0:			/* LN: 54 | CYCLE: 0 | RULES: () */ 
+565   	 0134	 90750004		i0 = i7 - (0x4)			# LN: 54 | 
+566   	 0135	 00004DC0		a0 = 0			# LN: 54 | 
+567   	 0136	 98540000		xmem[i0] = a0h			# LN: 54 | 
+568   	 0137	 8100014A		do (0x10), label_end_93			# LN: 54 | 
+569   	 0138				cline_54_0:			/* LN: 56 | CYCLE: 0 | RULES: () */ 
+570   	 0138				label_begin_93:			/* LN: 54 | CYCLE: 0 | RULES: () */ 
+571   	 0138	 90750002		i0 = i7 - (0x2)			# LN: 56 | 
+572   	 0139	 B0140000		i0 = xmem[i0]			# LN: 56 | 
+573   	 013A	 80040000		x0 = xmem[_processing_headroom_gain + 0]			# LN: 56 | 
+574   	 013B	 81940000		x1 = ymem[i0]			# LN: 56 | 
+575   	 013C	 90750002		i0 = i7 - (0x2)			# LN: 56 | 
+576   	 013D	 B0140000		i0 = xmem[i0]			# LN: 56 | 
+577   	 013E	 00002020		a0 = x1 * x0			# LN: 56 | 
+578   	 013F	 88D40000		ymem[i0] = a0			# LN: 56 | 
+579   	 0140				cline_56_0:			/* LN: 57 | CYCLE: 0 | RULES: () */ 
+580   	 0140	 90750002		i0 = i7 - (0x2)			# LN: 57 | 
+581   	 0141	 B0140000		i0 = xmem[i0]			# LN: 57 | 
+582   	 0142	 91750002		i1 = i7 - (0x2)			# LN: 57 | 
+583   	 0143	 02087FFF		i0 += 1			# LN: 57 | 
+584   	 0144	 B0540001		xmem[i1] = i0			# LN: 57 | 
+585   	 0145				cline_57_0:			/* LN: 54 | CYCLE: 0 | RULES: () */ 
+586   	 0145				init_latch_label_1:			/* LN: 58 | CYCLE: 0 | RULES: () */ 
+587   	 0145	 90750004		i0 = i7 - (0x4)			# LN: 54 | 
+588   	 0146	 88140000		a0 = xmem[i0]			# LN: 54 | 
+589   	 0147	 894A0001		uhalfword(a1) = (0x1)			# LN: 54 | 
+590   	 0148	 00004408		a0 = a0 + a1			# LN: 54 | 
+591   	 0149	 90750004		i0 = i7 - (0x4)			# LN: 54 | 
+592   	 014A				label_end_93:			# LN: 54 | CYCLE: 5 | RULES: ()
+593   	 014A	 98540000		xmem[i0] = a0h			# LN: 54 | 
+594   	 014B				cline_54_1:			/* LN: 59 | CYCLE: 0 | RULES: () */ 
+595   	 014B				for_end_1:			/* LN: 54 | CYCLE: 0 | RULES: () */ 
+596   	 014B	 90750002		i0 = i7 - (0x2)			# LN: 59 | 
+597   	 014C	 B0140000		i0 = xmem[i0]			# LN: 59 | 
+598   	 014D	 91750002		i1 = i7 - (0x2)			# LN: 59 | 
+599   	 014E	 90050010		i0 = i0 - (0x10)			# LN: 59 | 
+600   	 014F	 B0540001		xmem[i1] = i0			# LN: 59 | 
+601   	 0150				cline_59_0:			/* LN: 61 | CYCLE: 0 | RULES: () */ 
+602   	 0150	 90750004		i0 = i7 - (0x4)			# LN: 61 | 
+603   	 0151	 00004DC0		a0 = 0			# LN: 61 | 
+604   	 0152	 98540000		xmem[i0] = a0h			# LN: 61 | 
+605   	 0153	 81000178		do (0x10), label_end_94			# LN: 61 | 
+606   	 0154				cline_61_0:			/* LN: 63 | CYCLE: 0 | RULES: () */ 
+607   	 0154				label_begin_94:			/* LN: 61 | CYCLE: 0 | RULES: () */ 
+608   	 0154	 90750002		i0 = i7 - (0x2)			# LN: 63 | 
+609   	 0155	 B0140000		i0 = xmem[i0]			# LN: 63 | 
+610   	 0156	 80040000		x0 = xmem[_gain6db_scaled + 0]			# LN: 63 | 
+611   	 0157	 81940000		x1 = ymem[i0]			# LN: 63 | 
+612   	 0158	 90750001		i0 = i7 - (0x1)			# LN: 63 | 
+613   	 0159	 B0140000		i0 = xmem[i0]			# LN: 63 | 
+614   	 015A	 00002020		a0 = x1 * x0			# LN: 63 | 
+615   	 015B	 88D40000		ymem[i0] = a0			# LN: 63 | 
+616   	 015C				cline_63_0:			/* LN: 64 | CYCLE: 0 | RULES: () */ 
+617   	 015C	 90750002		i0 = i7 - (0x2)			# LN: 64 | 
+618   	 015D	 B0140000		i0 = xmem[i0]			# LN: 64 | 
+619   	 015E	 80040000		x0 = xmem[_gain6db_scaled + 0]			# LN: 64 | 
+620   	 015F	 81940000		x1 = ymem[i0]			# LN: 64 | 
+621   	 0160	 90750003		i0 = i7 - (0x3)			# LN: 64 | 
+622   	 0161	 B0140000		i0 = xmem[i0]			# LN: 64 | 
+623   	 0162	 00002020		a0 = x1 * x0			# LN: 64 | 
+624   	 0163	 88D40000		ymem[i0] = a0			# LN: 64 | 
+625   	 0164				cline_64_0:			/* LN: 65 | CYCLE: 0 | RULES: () */ 
+626   	 0164	 90750001		i0 = i7 - (0x1)			# LN: 65 | 
+627   	 0165	 B0140000		i0 = xmem[i0]			# LN: 65 | 
+628   	 0166	 91750001		i1 = i7 - (0x1)			# LN: 65 | 
+629   	 0167	 02087FFF		i0 += 1			# LN: 65 | 
+630   	 0168	 B0540001		xmem[i1] = i0			# LN: 65 | 
+631   	 0169				cline_65_0:			/* LN: 66 | CYCLE: 0 | RULES: () */ 
+632   	 0169	 90750003		i0 = i7 - (0x3)			# LN: 66 | 
+633   	 016A	 B0140000		i0 = xmem[i0]			# LN: 66 | 
+634   	 016B	 91750003		i1 = i7 - (0x3)			# LN: 66 | 
+635   	 016C	 02087FFF		i0 += 1			# LN: 66 | 
+636   	 016D	 B0540001		xmem[i1] = i0			# LN: 66 | 
+637   	 016E				cline_66_0:			/* LN: 67 | CYCLE: 0 | RULES: () */ 
+638   	 016E	 90750002		i0 = i7 - (0x2)			# LN: 67 | 
+639   	 016F	 B0140000		i0 = xmem[i0]			# LN: 67 | 
+640   	 0170	 91750002		i1 = i7 - (0x2)			# LN: 67 | 
+641   	 0171	 02087FFF		i0 += 1			# LN: 67 | 
+642   	 0172	 B0540001		xmem[i1] = i0			# LN: 67 | 
+643   	 0173				cline_67_0:			/* LN: 61 | CYCLE: 0 | RULES: () */ 
+644   	 0173				init_latch_label_2:			/* LN: 68 | CYCLE: 0 | RULES: () */ 
+645   	 0173	 90750004		i0 = i7 - (0x4)			# LN: 61 | 
+646   	 0174	 88140000		a0 = xmem[i0]			# LN: 61 | 
+647   	 0175	 894A0001		uhalfword(a1) = (0x1)			# LN: 61 | 
+648   	 0176	 00004408		a0 = a0 + a1			# LN: 61 | 
+649   	 0177	 90750004		i0 = i7 - (0x4)			# LN: 61 | 
+650   	 0178				label_end_94:			# LN: 61 | CYCLE: 5 | RULES: ()
+651   	 0178	 98540000		xmem[i0] = a0h			# LN: 61 | 
+652   	 0179				cline_61_1:			/* LN: 69 | CYCLE: 0 | RULES: () */ 
+653   	 0179				for_end_2:			/* LN: 61 | CYCLE: 0 | RULES: () */ 
+654   	 0179	 90750001		i0 = i7 - (0x1)			# LN: 69 | 
+655   	 017A	 B0140000		i0 = xmem[i0]			# LN: 69 | 
+656   	 017B	 91750001		i1 = i7 - (0x1)			# LN: 69 | 
+657   	 017C	 90050010		i0 = i0 - (0x10)			# LN: 69 | 
+658   	 017D	 B0540001		xmem[i1] = i0			# LN: 69 | 
+659   	 017E				cline_69_0:			/* LN: 70 | CYCLE: 0 | RULES: () */ 
+660   	 017E	 90750002		i0 = i7 - (0x2)			# LN: 70 | 
+661   	 017F	 B0140000		i0 = xmem[i0]			# LN: 70 | 
+662   	 0180	 91750002		i1 = i7 - (0x2)			# LN: 70 | 
+663   	 0181	 90050010		i0 = i0 - (0x10)			# LN: 70 | 
+664   	 0182	 B0540001		xmem[i1] = i0			# LN: 70 | 
+665   	 0183				cline_70_0:			/* LN: 71 | CYCLE: 0 | RULES: () */ 
+666   	 0183	 90750003		i0 = i7 - (0x3)			# LN: 71 | 
+667   	 0184	 B0140000		i0 = xmem[i0]			# LN: 71 | 
+668   	 0185	 91750003		i1 = i7 - (0x3)			# LN: 71 | 
+669   	 0186	 90050010		i0 = i0 - (0x10)			# LN: 71 | 
+670   	 0187	 B0540001		xmem[i1] = i0			# LN: 71 | 
+671   	 0188	 80080296		jmp (endif_0)			# LN: 71 | 
+672   	 0189				cline_71_0:			/* LN: 76 | CYCLE: 0 | RULES: () */ 
+673   	 0189				else_0:			/* LN: 36 | CYCLE: 0 | RULES: () */ 
+674   	 0189	 90750005		i0 = i7 - (0x5)			# LN: 76 | 
+675   	 018A	 884A0000		uhalfword(a0) = (_sampleBuffer + 0)			# LN: 76 | 
+676   	 018B	 88540000		xmem[i0] = a0			# LN: 76 | 
+677   	 018C				cline_76_0:			/* LN: 77 | CYCLE: 0 | RULES: () */ 
+678   	 018C	 90750006		i0 = i7 - (0x6)			# LN: 77 | 
+679   	 018D	 884A0010		uhalfword(a0) = (_sampleBuffer + 16)			# LN: 77 | 
+680   	 018E	 88540000		xmem[i0] = a0			# LN: 77 | 
+681   	 018F				cline_77_0:			/* LN: 78 | CYCLE: 0 | RULES: () */ 
+682   	 018F	 90750007		i0 = i7 - (0x7)			# LN: 78 | 
+683   	 0190	 884A0020		uhalfword(a0) = (_sampleBuffer + 32)			# LN: 78 | 
+684   	 0191	 88540000		xmem[i0] = a0			# LN: 78 | 
+685   	 0192				cline_78_0:			/* LN: 79 | CYCLE: 0 | RULES: () */ 
+686   	 0192	 90750008		i0 = i7 - (0x8)			# LN: 79 | 
+687   	 0193	 884A0030		uhalfword(a0) = (_sampleBuffer + 48)			# LN: 79 | 
+688   	 0194	 88540000		xmem[i0] = a0			# LN: 79 | 
+689   	 0195				cline_79_0:			/* LN: 80 | CYCLE: 0 | RULES: () */ 
+690   	 0195	 90750009		i0 = i7 - (0x9)			# LN: 80 | 
+691   	 0196	 884A0040		uhalfword(a0) = (_sampleBuffer + 64)			# LN: 80 | 
+692   	 0197	 88540000		xmem[i0] = a0			# LN: 80 | 
+693   	 0198				cline_80_0:			/* LN: 83 | CYCLE: 0 | RULES: () */ 
+694   	 0198	 9075000A		i0 = i7 - (0xa)			# LN: 83 | 
+695   	 0199	 00004DC0		a0 = 0			# LN: 83 | 
+696   	 019A	 98540000		xmem[i0] = a0h			# LN: 83 | 
+697   	 019B	 810001D4		do (0x10), label_end_95			# LN: 83 | 
+698   	 019C				cline_83_0:			/* LN: 86 | CYCLE: 0 | RULES: () */ 
+699   	 019C				label_begin_95:			/* LN: 83 | CYCLE: 0 | RULES: () */ 
+700   	 019C	 90750005		i0 = i7 - (0x5)			# LN: 86 | 
+701   	 019D	 B0140000		i0 = xmem[i0]			# LN: 86 | 
+702   	 019E	 80040000		x0 = xmem[_processing_input_gain + 0]			# LN: 86 | 
+703   	 019F	 81940000		x1 = ymem[i0]			# LN: 86 | 
+704   	 01A0	 90750008		i0 = i7 - (0x8)			# LN: 86 | 
+705   	 01A1	 B0140000		i0 = xmem[i0]			# LN: 86 | 
+706   	 01A2	 00002020		a0 = x1 * x0			# LN: 86 | 
+707   	 01A3	 88D40000		ymem[i0] = a0			# LN: 86 | 
+708   	 01A4				cline_86_0:			/* LN: 88 | CYCLE: 0 | RULES: () */ 
+709   	 01A4	 90750007		i0 = i7 - (0x7)			# LN: 88 | 
+710   	 01A5	 B0140000		i0 = xmem[i0]			# LN: 88 | 
+711   	 01A6	 80040000		x0 = xmem[_processing_input_gain + 0]			# LN: 88 | 
+712   	 01A7	 81940000		x1 = ymem[i0]			# LN: 88 | 
+713   	 01A8	 90750009		i0 = i7 - (0x9)			# LN: 88 | 
+714   	 01A9	 B0140000		i0 = xmem[i0]			# LN: 88 | 
+715   	 01AA	 00002020		a0 = x1 * x0			# LN: 88 | 
+716   	 01AB	 88D40000		ymem[i0] = a0			# LN: 88 | 
+717   	 01AC				cline_88_0:			/* LN: 90 | CYCLE: 0 | RULES: () */ 
+718   	 01AC	 90750008		i0 = i7 - (0x8)			# LN: 90 | 
+719   	 01AD	 B0140000		i0 = xmem[i0]			# LN: 90 | 
+720   	 01AE	 91750009		i1 = i7 - (0x9)			# LN: 90 | 
+721   	 01AF	 B1140001		i1 = xmem[i1]			# LN: 90 | 
+722   	 01B0	 88940000		a0 = ymem[i0]			# LN: 90 | 
+723   	 01B1	 89940001		a1 = ymem[i1]			# LN: 90 | 
+724   	 01B2	 90750006		i0 = i7 - (0x6)			# LN: 90 | 
+725   	 01B3	 B0140000		i0 = xmem[i0]			# LN: 90 | 
+726   	 01B4	 00004408		a0 = a0 + a1			# LN: 90 | 
+727   	 01B5	 98D40000		ymem[i0] = a0h			# LN: 90 | 
+728   	 01B6				cline_90_0:			/* LN: 92 | CYCLE: 0 | RULES: () */ 
+729   	 01B6	 90750008		i0 = i7 - (0x8)			# LN: 92 | 
+730   	 01B7	 B0140000		i0 = xmem[i0]			# LN: 92 | 
+731   	 01B8	 91750008		i1 = i7 - (0x8)			# LN: 92 | 
+732   	 01B9	 02087FFF		i0 += 1			# LN: 92 | 
+733   	 01BA	 B0540001		xmem[i1] = i0			# LN: 92 | 
+734   	 01BB				cline_92_0:			/* LN: 93 | CYCLE: 0 | RULES: () */ 
+735   	 01BB	 90750005		i0 = i7 - (0x5)			# LN: 93 | 
+736   	 01BC	 B0140000		i0 = xmem[i0]			# LN: 93 | 
+737   	 01BD	 91750005		i1 = i7 - (0x5)			# LN: 93 | 
+738   	 01BE	 02087FFF		i0 += 1			# LN: 93 | 
+739   	 01BF	 B0540001		xmem[i1] = i0			# LN: 93 | 
+740   	 01C0				cline_93_0:			/* LN: 94 | CYCLE: 0 | RULES: () */ 
+741   	 01C0	 90750009		i0 = i7 - (0x9)			# LN: 94 | 
+742   	 01C1	 B0140000		i0 = xmem[i0]			# LN: 94 | 
+743   	 01C2	 91750009		i1 = i7 - (0x9)			# LN: 94 | 
+744   	 01C3	 02087FFF		i0 += 1			# LN: 94 | 
+745   	 01C4	 B0540001		xmem[i1] = i0			# LN: 94 | 
+746   	 01C5				cline_94_0:			/* LN: 95 | CYCLE: 0 | RULES: () */ 
+747   	 01C5	 90750007		i0 = i7 - (0x7)			# LN: 95 | 
+748   	 01C6	 B0140000		i0 = xmem[i0]			# LN: 95 | 
+749   	 01C7	 91750007		i1 = i7 - (0x7)			# LN: 95 | 
+750   	 01C8	 02087FFF		i0 += 1			# LN: 95 | 
+751   	 01C9	 B0540001		xmem[i1] = i0			# LN: 95 | 
+752   	 01CA				cline_95_0:			/* LN: 96 | CYCLE: 0 | RULES: () */ 
+753   	 01CA	 90750006		i0 = i7 - (0x6)			# LN: 96 | 
+754   	 01CB	 B0140000		i0 = xmem[i0]			# LN: 96 | 
+755   	 01CC	 91750006		i1 = i7 - (0x6)			# LN: 96 | 
+756   	 01CD	 02087FFF		i0 += 1			# LN: 96 | 
+757   	 01CE	 B0540001		xmem[i1] = i0			# LN: 96 | 
+758   	 01CF				cline_96_0:			/* LN: 83 | CYCLE: 0 | RULES: () */ 
+759   	 01CF				init_latch_label_3:			/* LN: 97 | CYCLE: 0 | RULES: () */ 
+760   	 01CF	 9075000A		i0 = i7 - (0xa)			# LN: 83 | 
+761   	 01D0	 88140000		a0 = xmem[i0]			# LN: 83 | 
+762   	 01D1	 894A0001		uhalfword(a1) = (0x1)			# LN: 83 | 
+763   	 01D2	 00004408		a0 = a0 + a1			# LN: 83 | 
+764   	 01D3	 9075000A		i0 = i7 - (0xa)			# LN: 83 | 
+765   	 01D4				label_end_95:			# LN: 83 | CYCLE: 5 | RULES: ()
+766   	 01D4	 98540000		xmem[i0] = a0h			# LN: 83 | 
+767   	 01D5				cline_83_1:			/* LN: 99 | CYCLE: 0 | RULES: () */ 
+768   	 01D5				for_end_3:			/* LN: 83 | CYCLE: 0 | RULES: () */ 
+769   	 01D5	 90750005		i0 = i7 - (0x5)			# LN: 99 | 
+770   	 01D6	 884A0000		uhalfword(a0) = (_sampleBuffer + 0)			# LN: 99 | 
+771   	 01D7	 88540000		xmem[i0] = a0			# LN: 99 | 
+772   	 01D8				cline_99_0:			/* LN: 100 | CYCLE: 0 | RULES: () */ 
+773   	 01D8	 90750006		i0 = i7 - (0x6)			# LN: 100 | 
+774   	 01D9	 884A0010		uhalfword(a0) = (_sampleBuffer + 16)			# LN: 100 | 
+775   	 01DA	 88540000		xmem[i0] = a0			# LN: 100 | 
+776   	 01DB				cline_100_0:			/* LN: 101 | CYCLE: 0 | RULES: () */ 
+777   	 01DB	 90750007		i0 = i7 - (0x7)			# LN: 101 | 
+778   	 01DC	 884A0020		uhalfword(a0) = (_sampleBuffer + 32)			# LN: 101 | 
+779   	 01DD	 88540000		xmem[i0] = a0			# LN: 101 | 
+780   	 01DE				cline_101_0:			/* LN: 102 | CYCLE: 0 | RULES: () */ 
+781   	 01DE	 90750008		i0 = i7 - (0x8)			# LN: 102 | 
+782   	 01DF	 884A0030		uhalfword(a0) = (_sampleBuffer + 48)			# LN: 102 | 
+783   	 01E0	 88540000		xmem[i0] = a0			# LN: 102 | 
+784   	 01E1				cline_102_0:			/* LN: 103 | CYCLE: 0 | RULES: () */ 
+785   	 01E1	 90750009		i0 = i7 - (0x9)			# LN: 103 | 
+786   	 01E2	 884A0040		uhalfword(a0) = (_sampleBuffer + 64)			# LN: 103 | 
+787   	 01E3	 88540000		xmem[i0] = a0			# LN: 103 | 
+788   	 01E4				cline_103_0:			/* LN: 106 | CYCLE: 0 | RULES: () */ 
+789   	 01E4	 91750008		i1 = i7 - (0x8)			# LN: 106 | 
+790   	 01E5	 B1140001		i1 = xmem[i1]			# LN: 106 | 
+791   	 01E6	 88040000		a0 = xmem[__extractedConst_0_2 + 0]			# LN: 106 | 
+792   	 01E7	 A0050000		i0 = (0) + (_processing_audio_compressor)			# LN: 106 | 
+793   	 01E8	 80880000		call (_gst_audio_dynamic_transform_compressor_double)			# LN: 106 | 
+794   	 01E9				cline_106_0:			/* LN: 108 | CYCLE: 0 | RULES: () */ 
+795   	 01E9	 91750009		i1 = i7 - (0x9)			# LN: 108 | 
+796   	 01EA	 B1140001		i1 = xmem[i1]			# LN: 108 | 
+797   	 01EB	 88040000		a0 = xmem[__extractedConst_0_2 + 0]			# LN: 108 | 
+798   	 01EC	 A0050000		i0 = (0) + (_processing_audio_compressor)			# LN: 108 | 
+799   	 01ED	 80880000		call (_gst_audio_dynamic_transform_compressor_double)			# LN: 108 | 
+800   	 01EE				cline_108_0:			/* LN: 110 | CYCLE: 0 | RULES: () */ 
+801   	 01EE	 9075000A		i0 = i7 - (0xa)			# LN: 110 | 
+802   	 01EF	 00004DC0		a0 = 0			# LN: 110 | 
+803   	 01F0	 98540000		xmem[i0] = a0h			# LN: 110 | 
+804   	 01F1	 81000204		do (0x10), label_end_96			# LN: 110 | 
+805   	 01F2				cline_110_0:			/* LN: 113 | CYCLE: 0 | RULES: () */ 
+806   	 01F2				label_begin_96:			/* LN: 110 | CYCLE: 0 | RULES: () */ 
+807   	 01F2	 90750006		i0 = i7 - (0x6)			# LN: 113 | 
+808   	 01F3	 B0140000		i0 = xmem[i0]			# LN: 113 | 
+809   	 01F4	 80040000		x0 = xmem[_processing_headroom_gain + 0]			# LN: 113 | 
+810   	 01F5	 81940000		x1 = ymem[i0]			# LN: 113 | 
+811   	 01F6	 90750006		i0 = i7 - (0x6)			# LN: 113 | 
+812   	 01F7	 B0140000		i0 = xmem[i0]			# LN: 113 | 
+813   	 01F8	 00002020		a0 = x1 * x0			# LN: 113 | 
+814   	 01F9	 88D40000		ymem[i0] = a0			# LN: 113 | 
+815   	 01FA				cline_113_0:			/* LN: 114 | CYCLE: 0 | RULES: () */ 
+816   	 01FA	 90750006		i0 = i7 - (0x6)			# LN: 114 | 
+817   	 01FB	 B0140000		i0 = xmem[i0]			# LN: 114 | 
+818   	 01FC	 91750006		i1 = i7 - (0x6)			# LN: 114 | 
+819   	 01FD	 02087FFF		i0 += 1			# LN: 114 | 
+820   	 01FE	 B0540001		xmem[i1] = i0			# LN: 114 | 
+821   	 01FF				cline_114_0:			/* LN: 110 | CYCLE: 0 | RULES: () */ 
+822   	 01FF				init_latch_label_4:			/* LN: 115 | CYCLE: 0 | RULES: () */ 
+823   	 01FF	 9075000A		i0 = i7 - (0xa)			# LN: 110 | 
+824   	 0200	 88140000		a0 = xmem[i0]			# LN: 110 | 
+825   	 0201	 894A0001		uhalfword(a1) = (0x1)			# LN: 110 | 
+826   	 0202	 00004408		a0 = a0 + a1			# LN: 110 | 
+827   	 0203	 9075000A		i0 = i7 - (0xa)			# LN: 110 | 
+828   	 0204				label_end_96:			# LN: 110 | CYCLE: 5 | RULES: ()
+829   	 0204	 98540000		xmem[i0] = a0h			# LN: 110 | 
+830   	 0205				cline_110_1:			/* LN: 117 | CYCLE: 0 | RULES: () */ 
+831   	 0205				for_end_4:			/* LN: 110 | CYCLE: 0 | RULES: () */ 
+832   	 0205	 90750006		i0 = i7 - (0x6)			# LN: 117 | 
+833   	 0206	 884A0010		uhalfword(a0) = (_sampleBuffer + 16)			# LN: 117 | 
+834   	 0207	 88540000		xmem[i0] = a0			# LN: 117 | 
+835   	 0208				cline_117_0:			/* LN: 119 | CYCLE: 0 | RULES: () */ 
+836   	 0208	 9075000A		i0 = i7 - (0xa)			# LN: 119 | 
+837   	 0209	 00004DC0		a0 = 0			# LN: 119 | 
+838   	 020A	 98540000		xmem[i0] = a0h			# LN: 119 | 
+839   	 020B	 81000230		do (0x10), label_end_97			# LN: 119 | 
+840   	 020C				cline_119_0:			/* LN: 122 | CYCLE: 0 | RULES: () */ 
+841   	 020C				label_begin_97:			/* LN: 119 | CYCLE: 0 | RULES: () */ 
+842   	 020C	 90750006		i0 = i7 - (0x6)			# LN: 122 | 
+843   	 020D	 B0140000		i0 = xmem[i0]			# LN: 122 | 
+844   	 020E	 80040000		x0 = xmem[_gain6db_scaled + 0]			# LN: 122 | 
+845   	 020F	 81940000		x1 = ymem[i0]			# LN: 122 | 
+846   	 0210	 90750005		i0 = i7 - (0x5)			# LN: 122 | 
+847   	 0211	 B0140000		i0 = xmem[i0]			# LN: 122 | 
+848   	 0212	 00002020		a0 = x1 * x0			# LN: 122 | 
+849   	 0213	 88D40000		ymem[i0] = a0			# LN: 122 | 
+850   	 0214				cline_122_0:			/* LN: 124 | CYCLE: 0 | RULES: () */ 
+851   	 0214	 90750006		i0 = i7 - (0x6)			# LN: 124 | 
+852   	 0215	 B0140000		i0 = xmem[i0]			# LN: 124 | 
+853   	 0216	 80040000		x0 = xmem[_gain6db_scaled + 0]			# LN: 124 | 
+854   	 0217	 81940000		x1 = ymem[i0]			# LN: 124 | 
+855   	 0218	 90750007		i0 = i7 - (0x7)			# LN: 124 | 
+856   	 0219	 B0140000		i0 = xmem[i0]			# LN: 124 | 
+857   	 021A	 00002020		a0 = x1 * x0			# LN: 124 | 
+858   	 021B	 88D40000		ymem[i0] = a0			# LN: 124 | 
+859   	 021C				cline_124_0:			/* LN: 126 | CYCLE: 0 | RULES: () */ 
+860   	 021C	 90750005		i0 = i7 - (0x5)			# LN: 126 | 
+861   	 021D	 B0140000		i0 = xmem[i0]			# LN: 126 | 
+862   	 021E	 91750005		i1 = i7 - (0x5)			# LN: 126 | 
+863   	 021F	 02087FFF		i0 += 1			# LN: 126 | 
+864   	 0220	 B0540001		xmem[i1] = i0			# LN: 126 | 
+865   	 0221				cline_126_0:			/* LN: 127 | CYCLE: 0 | RULES: () */ 
+866   	 0221	 90750007		i0 = i7 - (0x7)			# LN: 127 | 
+867   	 0222	 B0140000		i0 = xmem[i0]			# LN: 127 | 
+868   	 0223	 91750007		i1 = i7 - (0x7)			# LN: 127 | 
+869   	 0224	 02087FFF		i0 += 1			# LN: 127 | 
+870   	 0225	 B0540001		xmem[i1] = i0			# LN: 127 | 
+871   	 0226				cline_127_0:			/* LN: 128 | CYCLE: 0 | RULES: () */ 
+872   	 0226	 90750006		i0 = i7 - (0x6)			# LN: 128 | 
+873   	 0227	 B0140000		i0 = xmem[i0]			# LN: 128 | 
+874   	 0228	 91750006		i1 = i7 - (0x6)			# LN: 128 | 
+875   	 0229	 02087FFF		i0 += 1			# LN: 128 | 
+876   	 022A	 B0540001		xmem[i1] = i0			# LN: 128 | 
+877   	 022B				cline_128_0:			/* LN: 119 | CYCLE: 0 | RULES: () */ 
+878   	 022B				init_latch_label_5:			/* LN: 129 | CYCLE: 0 | RULES: () */ 
+879   	 022B	 9075000A		i0 = i7 - (0xa)			# LN: 119 | 
+880   	 022C	 88140000		a0 = xmem[i0]			# LN: 119 | 
+881   	 022D	 894A0001		uhalfword(a1) = (0x1)			# LN: 119 | 
+882   	 022E	 00004408		a0 = a0 + a1			# LN: 119 | 
+883   	 022F	 9075000A		i0 = i7 - (0xa)			# LN: 119 | 
+884   	 0230				label_end_97:			# LN: 119 | CYCLE: 5 | RULES: ()
+885   	 0230	 98540000		xmem[i0] = a0h			# LN: 119 | 
+886   	 0231				cline_119_1:			/* LN: 131 | CYCLE: 0 | RULES: () */ 
+887   	 0231				for_end_5:			/* LN: 119 | CYCLE: 0 | RULES: () */ 
+888   	 0231	 90750005		i0 = i7 - (0x5)			# LN: 131 | 
+889   	 0232	 884A0000		uhalfword(a0) = (_sampleBuffer + 0)			# LN: 131 | 
+890   	 0233	 88540000		xmem[i0] = a0			# LN: 131 | 
+891   	 0234				cline_131_0:			/* LN: 132 | CYCLE: 0 | RULES: () */ 
+892   	 0234	 90750006		i0 = i7 - (0x6)			# LN: 132 | 
+893   	 0235	 884A0010		uhalfword(a0) = (_sampleBuffer + 16)			# LN: 132 | 
+894   	 0236	 88540000		xmem[i0] = a0			# LN: 132 | 
+895   	 0237				cline_132_0:			/* LN: 133 | CYCLE: 0 | RULES: () */ 
+896   	 0237	 90750007		i0 = i7 - (0x7)			# LN: 133 | 
+897   	 0238	 884A0020		uhalfword(a0) = (_sampleBuffer + 32)			# LN: 133 | 
+898   	 0239	 88540000		xmem[i0] = a0			# LN: 133 | 
+899   	 023A				cline_133_0:			/* LN: 135 | CYCLE: 0 | RULES: () */ 
+900   	 023A	 9075000A		i0 = i7 - (0xa)			# LN: 135 | 
+901   	 023B	 00004DC0		a0 = 0			# LN: 135 | 
+902   	 023C	 98540000		xmem[i0] = a0h			# LN: 135 | 
+903   	 023D	 8100025D		do (0x10), label_end_98			# LN: 135 | 
+904   	 023E				cline_135_0:			/* LN: 138 | CYCLE: 0 | RULES: () */ 
+905   	 023E				label_begin_98:			/* LN: 135 | CYCLE: 0 | RULES: () */ 
+906   	 023E	 90750008		i0 = i7 - (0x8)			# LN: 138 | 
+907   	 023F	 B0140000		i0 = xmem[i0]			# LN: 138 | 
+908   	 0240	 80040000		x0 = xmem[_gain2db_scaled + 0]			# LN: 138 | 
+909   	 0241	 81940000		x1 = ymem[i0]			# LN: 138 | 
+910   	 0242	 90750008		i0 = i7 - (0x8)			# LN: 138 | 
+911   	 0243	 B0140000		i0 = xmem[i0]			# LN: 138 | 
+912   	 0244	 00002020		a0 = x1 * x0			# LN: 138 | 
+913   	 0245	 88D40000		ymem[i0] = a0			# LN: 138 | 
+914   	 0246				cline_138_0:			/* LN: 140 | CYCLE: 0 | RULES: () */ 
+915   	 0246	 90750009		i0 = i7 - (0x9)			# LN: 140 | 
+916   	 0247	 B0140000		i0 = xmem[i0]			# LN: 140 | 
+917   	 0248	 80040000		x0 = xmem[_gain2db_scaled + 0]			# LN: 140 | 
+918   	 0249	 81940000		x1 = ymem[i0]			# LN: 140 | 
+919   	 024A	 90750009		i0 = i7 - (0x9)			# LN: 140 | 
+920   	 024B	 B0140000		i0 = xmem[i0]			# LN: 140 | 
+921   	 024C	 00002020		a0 = x1 * x0			# LN: 140 | 
+922   	 024D	 88D40000		ymem[i0] = a0			# LN: 140 | 
+923   	 024E				cline_140_0:			/* LN: 142 | CYCLE: 0 | RULES: () */ 
+924   	 024E	 90750008		i0 = i7 - (0x8)			# LN: 142 | 
+925   	 024F	 B0140000		i0 = xmem[i0]			# LN: 142 | 
+926   	 0250	 91750008		i1 = i7 - (0x8)			# LN: 142 | 
+927   	 0251	 02087FFF		i0 += 1			# LN: 142 | 
+928   	 0252	 B0540001		xmem[i1] = i0			# LN: 142 | 
+929   	 0253				cline_142_0:			/* LN: 143 | CYCLE: 0 | RULES: () */ 
+930   	 0253	 90750009		i0 = i7 - (0x9)			# LN: 143 | 
+931   	 0254	 B0140000		i0 = xmem[i0]			# LN: 143 | 
+932   	 0255	 91750009		i1 = i7 - (0x9)			# LN: 143 | 
+933   	 0256	 02087FFF		i0 += 1			# LN: 143 | 
+934   	 0257	 B0540001		xmem[i1] = i0			# LN: 143 | 
+935   	 0258				cline_143_0:			/* LN: 135 | CYCLE: 0 | RULES: () */ 
+936   	 0258				init_latch_label_6:			/* LN: 144 | CYCLE: 0 | RULES: () */ 
+937   	 0258	 9075000A		i0 = i7 - (0xa)			# LN: 135 | 
+938   	 0259	 88140000		a0 = xmem[i0]			# LN: 135 | 
+939   	 025A	 894A0001		uhalfword(a1) = (0x1)			# LN: 135 | 
+940   	 025B	 00004408		a0 = a0 + a1			# LN: 135 | 
+941   	 025C	 9075000A		i0 = i7 - (0xa)			# LN: 135 | 
+942   	 025D				label_end_98:			# LN: 135 | CYCLE: 5 | RULES: ()
+943   	 025D	 98540000		xmem[i0] = a0h			# LN: 135 | 
+944   	 025E				cline_135_1:			/* LN: 146 | CYCLE: 0 | RULES: () */ 
+945   	 025E				for_end_6:			/* LN: 135 | CYCLE: 0 | RULES: () */ 
+946   	 025E	 90750008		i0 = i7 - (0x8)			# LN: 146 | 
+947   	 025F	 884A0030		uhalfword(a0) = (_sampleBuffer + 48)			# LN: 146 | 
+948   	 0260	 88540000		xmem[i0] = a0			# LN: 146 | 
+949   	 0261				cline_146_0:			/* LN: 147 | CYCLE: 0 | RULES: () */ 
+950   	 0261	 90750009		i0 = i7 - (0x9)			# LN: 147 | 
+951   	 0262	 884A0040		uhalfword(a0) = (_sampleBuffer + 64)			# LN: 147 | 
+952   	 0263	 88540000		xmem[i0] = a0			# LN: 147 | 
+953   	 0264				cline_147_0:			/* LN: 150 | CYCLE: 0 | RULES: () */ 
+954   	 0264	 9075000A		i0 = i7 - (0xa)			# LN: 150 | 
+955   	 0265	 00004DC0		a0 = 0			# LN: 150 | 
+956   	 0266	 98540000		xmem[i0] = a0h			# LN: 150 | 
+957   	 0267	 81000295		do (0x10), label_end_99			# LN: 150 | 
+958   	 0268				cline_150_0:			/* LN: 153 | CYCLE: 0 | RULES: () */ 
+959   	 0268				label_begin_99:			/* LN: 150 | CYCLE: 0 | RULES: () */ 
+960   	 0268	 90750005		i0 = i7 - (0x5)			# LN: 153 | 
+961   	 0269	 B0140000		i0 = xmem[i0]			# LN: 153 | 
+962   	 026A	 91750008		i1 = i7 - (0x8)			# LN: 153 | 
+963   	 026B	 B1140001		i1 = xmem[i1]			# LN: 153 | 
+964   	 026C	 88940000		a0 = ymem[i0]			# LN: 153 | 
+965   	 026D	 89940001		a1 = ymem[i1]			# LN: 153 | 
+966   	 026E	 90750008		i0 = i7 - (0x8)			# LN: 153 | 
+967   	 026F	 B0140000		i0 = xmem[i0]			# LN: 153 | 
+968   	 0270	 00004480		a0 = a1 + a0			# LN: 153 | 
+969   	 0271	 98D40000		ymem[i0] = a0h			# LN: 153 | 
+970   	 0272				cline_153_0:			/* LN: 155 | CYCLE: 0 | RULES: () */ 
+971   	 0272	 90750005		i0 = i7 - (0x5)			# LN: 155 | 
+972   	 0273	 B0140000		i0 = xmem[i0]			# LN: 155 | 
+973   	 0274	 91750009		i1 = i7 - (0x9)			# LN: 155 | 
+974   	 0275	 B1140001		i1 = xmem[i1]			# LN: 155 | 
+975   	 0276	 88940000		a0 = ymem[i0]			# LN: 155 | 
+976   	 0277	 89940001		a1 = ymem[i1]			# LN: 155 | 
+977   	 0278	 90750009		i0 = i7 - (0x9)			# LN: 155 | 
+978   	 0279	 B0140000		i0 = xmem[i0]			# LN: 155 | 
+979   	 027A	 00004408		a0 = a0 + a1			# LN: 155 | 
+980   	 027B	 98D40000		ymem[i0] = a0h			# LN: 155 | 
+981   	 027C				cline_155_0:			/* LN: 157 | CYCLE: 0 | RULES: () */ 
+982   	 027C	 90750008		i0 = i7 - (0x8)			# LN: 157 | 
+983   	 027D	 B0140000		i0 = xmem[i0]			# LN: 157 | 
+984   	 027E	 91750008		i1 = i7 - (0x8)			# LN: 157 | 
+985   	 027F	 02087FFF		i0 += 1			# LN: 157 | 
+986   	 0280	 B0540001		xmem[i1] = i0			# LN: 157 | 
+987   	 0281				cline_157_0:			/* LN: 158 | CYCLE: 0 | RULES: () */ 
+988   	 0281	 90750009		i0 = i7 - (0x9)			# LN: 158 | 
+989   	 0282	 B0140000		i0 = xmem[i0]			# LN: 158 | 
+990   	 0283	 91750009		i1 = i7 - (0x9)			# LN: 158 | 
+991   	 0284	 02087FFF		i0 += 1			# LN: 158 | 
+992   	 0285	 B0540001		xmem[i1] = i0			# LN: 158 | 
+993   	 0286				cline_158_0:			/* LN: 159 | CYCLE: 0 | RULES: () */ 
+994   	 0286	 90750005		i0 = i7 - (0x5)			# LN: 159 | 
+995   	 0287	 B0140000		i0 = xmem[i0]			# LN: 159 | 
+996   	 0288	 91750005		i1 = i7 - (0x5)			# LN: 159 | 
+997   	 0289	 02087FFF		i0 += 1			# LN: 159 | 
+998   	 028A	 B0540001		xmem[i1] = i0			# LN: 159 | 
+999   	 028B				cline_159_0:			/* LN: 160 | CYCLE: 0 | RULES: () */ 
+1000  	 028B	 90750007		i0 = i7 - (0x7)			# LN: 160 | 
+1001  	 028C	 B0140000		i0 = xmem[i0]			# LN: 160 | 
+1002  	 028D	 91750007		i1 = i7 - (0x7)			# LN: 160 | 
+1003  	 028E	 02087FFF		i0 += 1			# LN: 160 | 
+1004  	 028F	 B0540001		xmem[i1] = i0			# LN: 160 | 
+1005  	 0290				cline_160_0:			/* LN: 150 | CYCLE: 0 | RULES: () */ 
+1006  	 0290				init_latch_label_7:			/* LN: 161 | CYCLE: 0 | RULES: () */ 
+1007  	 0290	 9075000A		i0 = i7 - (0xa)			# LN: 150 | 
+1008  	 0291	 88140000		a0 = xmem[i0]			# LN: 150 | 
+1009  	 0292	 894A0001		uhalfword(a1) = (0x1)			# LN: 150 | 
+1010  	 0293	 00004408		a0 = a0 + a1			# LN: 150 | 
+1011  	 0294	 9075000A		i0 = i7 - (0xa)			# LN: 150 | 
+1012  	 0295				label_end_99:			# LN: 150 | CYCLE: 5 | RULES: ()
+1013  	 0295	 98540000		xmem[i0] = a0h			# LN: 150 | 
+1014  	 0296				cline_150_1:			/* LN: 163 | CYCLE: 0 | RULES: () */ 
+1015  	 0296				endif_0:			/* LN: 36 | CYCLE: 0 | RULES: () */ 
+1016  	 0296				for_end_7:			/* LN: 150 | CYCLE: 0 | RULES: () */ 
+1017  	 0296	 80080297		jmp (__epilogue_226)			# LN: 163 | 
+1018  	 0297				__epilogue_226:			/* LN: 163 | CYCLE: 0 | RULES: () */ 
+1019  	 0297	 9775000A		i7 = i7 - (0xa)			# LN: 163 | 
+1020  	 0298	 02177FFF		i7 -= 1			# LN: 163 | 
+1021  	 0299	 81880000		ret			# LN: 163 | 
+1022  						(null)
+				 SYMBOL TABLE 
+
+    Name                                                                                    Type                  Value 
+
+_COMMON_INC_PATH_                                                               					 Define                 "C:/CirrusDSP/crystal32/common/inc/"
+_DSP_                                                                           					 Define                 "a"
+_LOCAL_INC_PATH_                                                                					 Define                 "inc/"
+_LOCAL_SRC_PATH_                                                                					 Define                 "src/"
+_MUI_VERSION_                                                                   					 Define                 "020000"
+_OVLY_                                                                          					 Define                 "standalone"
+_OVLY_REVISION_                                                                 					 Define                 "020000"
+_ROUTER_INC_PATH_                                                               					 Define                 "rom_inc/"
+_SLOT_                                                                          					 Define                 "0"
+_TARGET_FAMILY_                                                                 					 Define                 "crystal32"
+_TOOLS_VERSION_                                                                 					 Define                 "0x0701"
+_VERSION_                                                                       					 Define                 "00"
+__CASM_VER__                                                                    			  Unused Variable		        0 (701H)
+__div                                                                           					 External   
+__epilogue_226                                                                  			         Relocatable         main_GEN_0014:0297H
+__epilogue_228                                                                  			         Relocatable         main_GEN_0014:00EDH
+__extractedConst_0_2                                                            			         Relocatable         main_GEN_0000:0000H
+__start                                                                         					 External   
+_buffer_choice                                                                  			  Public Relocatable       main_GEN_0001:0000H
+_cl_wavread_bits_per_sample                                                     					 External   
+_cl_wavread_close                                                               					 External   
+_cl_wavread_frame_rate                                                          					 External   
+_cl_wavread_getnchannels                                                        					 External   
+_cl_wavread_number_of_frames                                                    					 External   
+_cl_wavread_open                                                                					 External   
+_cl_wavread_recvsample                                                          					 External   
+_cl_wavwrite_close                                                              					 External   
+_cl_wavwrite_open                                                               					 External   
+_cl_wavwrite_sendsample                                                         					 External   
+_gain2db_scaled                                                                 			  Public Relocatable       main_GEN_0002:0000H
+_gain6db_scaled                                                                 			  Public Relocatable       main_GEN_0003:0000H
+_gst_audio_dynamic_transform_compressor_double                                  					 External   
+_main                                                                           			  Public Relocatable       main_GEN_0014:0000H
+_output_channels                                                                			  Public Relocatable       main_GEN_0004:0000H
+_printf                                                                         					 External   
+_processing                                                                     			  Public Relocatable       main_GEN_0014:00F0H
+_processing_audio_compressor                                                    			  Public Relocatable       main_GEN_0005:0000H
+_processing_compressor_ratio                                                    			  Public Relocatable       main_GEN_0006:0000H
+_processing_compressor_threshold                                                			  Public Relocatable       main_GEN_0007:0000H
+_processing_headroom_gain                                                       			  Public Relocatable       main_GEN_0008:0000H
+_processing_input_gain                                                          			  Public Relocatable       main_GEN_0009:0000H
+_processing_output_mode                                                         			  Public Relocatable       main_GEN_0010:0000H
+_sampleBuffer                                                                   			  Public Relocatable       main_GEN_0011:0000H
+_strcpy                                                                         					 External   
+_string_const_0                                                                 			         Relocatable         main_GEN_0012:0000H
+_string_const_1                                                                 			         Relocatable         main_GEN_0013:0000H
+cline_100_0                                                                     			  Unused Relocatable        main_GEN_0014:01DBH
+cline_101_0                                                                     			  Unused Relocatable        main_GEN_0014:01DEH
+cline_102_0                                                                     			  Unused Relocatable        main_GEN_0014:01E1H
+cline_103_0                                                                     			  Unused Relocatable        main_GEN_0014:01E4H
+cline_106_0                                                                     			  Unused Relocatable        main_GEN_0014:01E9H
+cline_108_0                                                                     			  Unused Relocatable        main_GEN_0014:01EEH
+cline_110_0                                                                     			  Unused Relocatable        main_GEN_0014:01F2H
+cline_110_1                                                                     			  Unused Relocatable        main_GEN_0014:0205H
+cline_113_0                                                                     			  Unused Relocatable        main_GEN_0014:01FAH
+cline_114_0                                                                     			  Unused Relocatable        main_GEN_0014:01FFH
+cline_117_0                                                                     			  Unused Relocatable        main_GEN_0014:0208H
+cline_119_0                                                                     			  Unused Relocatable        main_GEN_0014:020CH
+cline_119_1                                                                     			  Unused Relocatable        main_GEN_0014:0231H
+cline_122_0                                                                     			  Unused Relocatable        main_GEN_0014:0214H
+cline_124_0                                                                     			  Unused Relocatable        main_GEN_0014:021CH
+cline_126_0                                                                     			  Unused Relocatable        main_GEN_0014:0221H
+cline_127_0                                                                     			  Unused Relocatable        main_GEN_0014:0226H
+cline_128_0                                                                     			  Unused Relocatable        main_GEN_0014:022BH
+cline_131_0                                                                     			  Unused Relocatable        main_GEN_0014:0234H
+cline_132_0                                                                     			  Unused Relocatable        main_GEN_0014:0237H
+cline_133_0                                                                     			  Unused Relocatable        main_GEN_0014:023AH
+cline_135_0                                                                     			  Unused Relocatable        main_GEN_0014:023EH
+cline_135_1                                                                     			  Unused Relocatable        main_GEN_0014:025EH
+cline_138_0                                                                     			  Unused Relocatable        main_GEN_0014:0246H
+cline_140_0                                                                     			  Unused Relocatable        main_GEN_0014:024EH
+cline_142_0                                                                     			  Unused Relocatable        main_GEN_0014:0253H
+cline_143_0                                                                     			  Unused Relocatable        main_GEN_0014:0258H
+cline_146_0                                                                     			  Unused Relocatable        main_GEN_0014:0261H
+cline_147_0                                                                     			  Unused Relocatable        main_GEN_0014:0264H
+cline_150_0                                                                     			  Unused Relocatable        main_GEN_0014:0268H
+cline_150_1                                                                     			  Unused Relocatable        main_GEN_0014:0296H
+cline_153_0                                                                     			  Unused Relocatable        main_GEN_0014:0272H
+cline_155_0                                                                     			  Unused Relocatable        main_GEN_0014:027CH
+cline_157_0                                                                     			  Unused Relocatable        main_GEN_0014:0281H
+cline_158_0                                                                     			  Unused Relocatable        main_GEN_0014:0286H
+cline_159_0                                                                     			  Unused Relocatable        main_GEN_0014:028BH
+cline_160_0                                                                     			  Unused Relocatable        main_GEN_0014:0290H
+cline_165_0                                                                     			  Unused Relocatable        main_GEN_0014:0007H
+cline_174_0                                                                     			  Unused Relocatable        main_GEN_0014:000DH
+cline_183_0                                                                     			  Unused Relocatable        main_GEN_0014:0015H
+cline_183_1                                                                     			  Unused Relocatable        main_GEN_0014:0037H
+cline_185_0                                                                     			  Unused Relocatable        main_GEN_0014:001DH
+cline_185_1                                                                     			  Unused Relocatable        main_GEN_0014:0030H
+cline_187_0                                                                     			  Unused Relocatable        main_GEN_0014:0029H
+cline_193_0                                                                     			  Unused Relocatable        main_GEN_0014:003EH
+cline_194_0                                                                     			  Unused Relocatable        main_GEN_0014:0043H
+cline_195_0                                                                     			  Unused Relocatable        main_GEN_0014:0047H
+cline_197_0                                                                     			  Unused Relocatable        main_GEN_0014:0049H
+cline_198_0                                                                     			  Unused Relocatable        main_GEN_0014:004BH
+cline_204_0                                                                     			  Unused Relocatable        main_GEN_0014:0050H
+cline_205_0                                                                     			  Unused Relocatable        main_GEN_0014:0055H
+cline_206_0                                                                     			  Unused Relocatable        main_GEN_0014:005AH
+cline_207_0                                                                     			  Unused Relocatable        main_GEN_0014:005FH
+cline_212_0                                                                     			  Unused Relocatable        main_GEN_0014:0067H
+cline_213_0                                                                     			  Unused Relocatable        main_GEN_0014:0072H
+cline_214_0                                                                     			  Unused Relocatable        main_GEN_0014:0076H
+cline_216_0                                                                     			  Unused Relocatable        main_GEN_0014:0078H
+cline_217_0                                                                     			  Unused Relocatable        main_GEN_0014:007AH
+cline_228_0                                                                     			  Unused Relocatable        main_GEN_0014:0085H
+cline_228_1                                                                     			  Unused Relocatable        main_GEN_0014:00E5H
+cline_230_0                                                                     			  Unused Relocatable        main_GEN_0014:0089H
+cline_230_1                                                                     			  Unused Relocatable        main_GEN_0014:00B1H
+cline_232_0                                                                     			  Unused Relocatable        main_GEN_0014:0092H
+cline_232_1                                                                     			  Unused Relocatable        main_GEN_0014:00ABH
+cline_234_0                                                                     			  Unused Relocatable        main_GEN_0014:0097H
+cline_235_0                                                                     			  Unused Relocatable        main_GEN_0014:00A4H
+cline_239_0                                                                     			  Unused Relocatable        main_GEN_0014:00B2H
+cline_241_0                                                                     			  Unused Relocatable        main_GEN_0014:00B6H
+cline_241_1                                                                     			  Unused Relocatable        main_GEN_0014:00DEH
+cline_243_0                                                                     			  Unused Relocatable        main_GEN_0014:00BFH
+cline_243_1                                                                     			  Unused Relocatable        main_GEN_0014:00D8H
+cline_245_0                                                                     			  Unused Relocatable        main_GEN_0014:00CCH
+cline_246_0                                                                     			  Unused Relocatable        main_GEN_0014:00D1H
+cline_254_0                                                                     			  Unused Relocatable        main_GEN_0014:00E8H
+cline_255_0                                                                     			  Unused Relocatable        main_GEN_0014:00EBH
+cline_258_0                                                                     			  Unused Relocatable        main_GEN_0014:00EDH
+cline_33_0                                                                      			  Unused Relocatable        main_GEN_0014:00F3H
+cline_36_0                                                                      			  Unused Relocatable        main_GEN_0014:00F7H
+cline_38_0                                                                      			  Unused Relocatable        main_GEN_0014:00FAH
+cline_39_0                                                                      			  Unused Relocatable        main_GEN_0014:00FDH
+cline_40_0                                                                      			  Unused Relocatable        main_GEN_0014:0100H
+cline_43_0                                                                      			  Unused Relocatable        main_GEN_0014:0104H
+cline_43_1                                                                      			  Unused Relocatable        main_GEN_0014:0125H
+cline_45_0                                                                      			  Unused Relocatable        main_GEN_0014:0110H
+cline_46_0                                                                      			  Unused Relocatable        main_GEN_0014:0115H
+cline_47_0                                                                      			  Unused Relocatable        main_GEN_0014:011AH
+cline_48_0                                                                      			  Unused Relocatable        main_GEN_0014:011FH
+cline_50_0                                                                      			  Unused Relocatable        main_GEN_0014:012AH
+cline_51_0                                                                      			  Unused Relocatable        main_GEN_0014:012FH
+cline_52_0                                                                      			  Unused Relocatable        main_GEN_0014:0134H
+cline_54_0                                                                      			  Unused Relocatable        main_GEN_0014:0138H
+cline_54_1                                                                      			  Unused Relocatable        main_GEN_0014:014BH
+cline_56_0                                                                      			  Unused Relocatable        main_GEN_0014:0140H
+cline_57_0                                                                      			  Unused Relocatable        main_GEN_0014:0145H
+cline_59_0                                                                      			  Unused Relocatable        main_GEN_0014:0150H
+cline_61_0                                                                      			  Unused Relocatable        main_GEN_0014:0154H
+cline_61_1                                                                      			  Unused Relocatable        main_GEN_0014:0179H
+cline_63_0                                                                      			  Unused Relocatable        main_GEN_0014:015CH
+cline_64_0                                                                      			  Unused Relocatable        main_GEN_0014:0164H
+cline_65_0                                                                      			  Unused Relocatable        main_GEN_0014:0169H
+cline_66_0                                                                      			  Unused Relocatable        main_GEN_0014:016EH
+cline_67_0                                                                      			  Unused Relocatable        main_GEN_0014:0173H
+cline_69_0                                                                      			  Unused Relocatable        main_GEN_0014:017EH
+cline_70_0                                                                      			  Unused Relocatable        main_GEN_0014:0183H
+cline_71_0                                                                      			  Unused Relocatable        main_GEN_0014:0189H
+cline_76_0                                                                      			  Unused Relocatable        main_GEN_0014:018CH
+cline_77_0                                                                      			  Unused Relocatable        main_GEN_0014:018FH
+cline_78_0                                                                      			  Unused Relocatable        main_GEN_0014:0192H
+cline_79_0                                                                      			  Unused Relocatable        main_GEN_0014:0195H
+cline_80_0                                                                      			  Unused Relocatable        main_GEN_0014:0198H
+cline_83_0                                                                      			  Unused Relocatable        main_GEN_0014:019CH
+cline_83_1                                                                      			  Unused Relocatable        main_GEN_0014:01D5H
+cline_86_0                                                                      			  Unused Relocatable        main_GEN_0014:01A4H
+cline_88_0                                                                      			  Unused Relocatable        main_GEN_0014:01ACH
+cline_90_0                                                                      			  Unused Relocatable        main_GEN_0014:01B6H
+cline_92_0                                                                      			  Unused Relocatable        main_GEN_0014:01BBH
+cline_93_0                                                                      			  Unused Relocatable        main_GEN_0014:01C0H
+cline_94_0                                                                      			  Unused Relocatable        main_GEN_0014:01C5H
+cline_95_0                                                                      			  Unused Relocatable        main_GEN_0014:01CAH
+cline_96_0                                                                      			  Unused Relocatable        main_GEN_0014:01CFH
+cline_99_0                                                                      			  Unused Relocatable        main_GEN_0014:01D8H
+dummy                                                                           			  Unused Number				     0 (0H)
+else_0                                                                          			         Relocatable         main_GEN_0014:0189H
+else_1                                                                          			         Relocatable         main_GEN_0014:004BH
+else_2                                                                          			         Relocatable         main_GEN_0014:007AH
+endif_0                                                                         			         Relocatable         main_GEN_0014:0296H
+endif_1                                                                         			  Unused Relocatable        main_GEN_0014:004BH
+endif_2                                                                         			  Unused Relocatable        main_GEN_0014:007AH
+for_10                                                                          			         Relocatable         main_GEN_0014:007DH
+for_12                                                                          			         Relocatable         main_GEN_0014:008CH
+for_14                                                                          			         Relocatable         main_GEN_0014:00B9H
+for_8                                                                           			         Relocatable         main_GEN_0014:0010H
+for_9                                                                           			         Relocatable         main_GEN_0014:0018H
+for_end_0                                                                       			  Unused Relocatable        main_GEN_0014:0125H
+for_end_1                                                                       			  Unused Relocatable        main_GEN_0014:014BH
+for_end_10                                                                      			         Relocatable         main_GEN_0014:00E5H
+for_end_11                                                                      			  Unused Relocatable        main_GEN_0014:00B1H
+for_end_12                                                                      			         Relocatable         main_GEN_0014:00ABH
+for_end_13                                                                      			  Unused Relocatable        main_GEN_0014:00DEH
+for_end_14                                                                      			         Relocatable         main_GEN_0014:00D8H
+for_end_2                                                                       			  Unused Relocatable        main_GEN_0014:0179H
+for_end_3                                                                       			  Unused Relocatable        main_GEN_0014:01D5H
+for_end_4                                                                       			  Unused Relocatable        main_GEN_0014:0205H
+for_end_5                                                                       			  Unused Relocatable        main_GEN_0014:0231H
+for_end_6                                                                       			  Unused Relocatable        main_GEN_0014:025EH
+for_end_7                                                                       			  Unused Relocatable        main_GEN_0014:0296H
+for_end_8                                                                       			         Relocatable         main_GEN_0014:0037H
+for_end_9                                                                       			         Relocatable         main_GEN_0014:0030H
+init_latch_label_0                                                              			  Unused Relocatable        main_GEN_0014:011FH
+init_latch_label_1                                                              			  Unused Relocatable        main_GEN_0014:0145H
+init_latch_label_10                                                             			  Unused Relocatable        main_GEN_0014:00A4H
+init_latch_label_11                                                             			  Unused Relocatable        main_GEN_0014:00ABH
+init_latch_label_12                                                             			  Unused Relocatable        main_GEN_0014:00D1H
+init_latch_label_13                                                             			  Unused Relocatable        main_GEN_0014:00D8H
+init_latch_label_14                                                             			  Unused Relocatable        main_GEN_0014:00DEH
+init_latch_label_2                                                              			  Unused Relocatable        main_GEN_0014:0173H
+init_latch_label_3                                                              			  Unused Relocatable        main_GEN_0014:01CFH
+init_latch_label_4                                                              			  Unused Relocatable        main_GEN_0014:01FFH
+init_latch_label_5                                                              			  Unused Relocatable        main_GEN_0014:022BH
+init_latch_label_6                                                              			  Unused Relocatable        main_GEN_0014:0258H
+init_latch_label_7                                                              			  Unused Relocatable        main_GEN_0014:0290H
+init_latch_label_8                                                              			  Unused Relocatable        main_GEN_0014:0029H
+init_latch_label_9                                                              			  Unused Relocatable        main_GEN_0014:0030H
+label_begin_100                                                                 			  Unused Relocatable        main_GEN_0014:0089H
+label_begin_101                                                                 			  Unused Relocatable        main_GEN_0014:00B6H
+label_begin_92                                                                  			  Unused Relocatable        main_GEN_0014:0104H
+label_begin_93                                                                  			  Unused Relocatable        main_GEN_0014:0138H
+label_begin_94                                                                  			  Unused Relocatable        main_GEN_0014:0154H
+label_begin_95                                                                  			  Unused Relocatable        main_GEN_0014:019CH
+label_begin_96                                                                  			  Unused Relocatable        main_GEN_0014:01F2H
+label_begin_97                                                                  			  Unused Relocatable        main_GEN_0014:020CH
+label_begin_98                                                                  			  Unused Relocatable        main_GEN_0014:023EH
+label_begin_99                                                                  			  Unused Relocatable        main_GEN_0014:0268H
+label_end_100                                                                   			         Relocatable         main_GEN_0014:00B0H
+label_end_101                                                                   			         Relocatable         main_GEN_0014:00DDH
+label_end_92                                                                    			         Relocatable         main_GEN_0014:0124H
+label_end_93                                                                    			         Relocatable         main_GEN_0014:014AH
+label_end_94                                                                    			         Relocatable         main_GEN_0014:0178H
+label_end_95                                                                    			         Relocatable         main_GEN_0014:01D4H
+label_end_96                                                                    			         Relocatable         main_GEN_0014:0204H
+label_end_97                                                                    			         Relocatable         main_GEN_0014:0230H
+label_end_98                                                                    			         Relocatable         main_GEN_0014:025DH
+label_end_99                                                                    			         Relocatable         main_GEN_0014:0295H
+
+	       SEGMENTS:
+
+Size			  Name										 Class
+0000H	 __INIT                                  			 CODE                                    
+0001H	 main_GEN_0000                           			 X_OVLY                                  
+000FH	 main_GEN_0001                           			 X_OVLY                                  
+0001H	 main_GEN_0002                           			 X_OVLY                                  
+0001H	 main_GEN_0003                           			 X_OVLY                                  
+0003H	 main_GEN_0004                           			 X_OVLY                                  
+0002H	 main_GEN_0005                           			 X_OVLY                                  
+0001H	 main_GEN_0006                           			 X_OVLY                                  
+0001H	 main_GEN_0007                           			 X_OVLY                                  
+0001H	 main_GEN_0008                           			 X_OVLY                                  
+0001H	 main_GEN_0009                           			 X_OVLY                                  
+0001H	 main_GEN_0010                           			 X_OVLY                                  
+0080H	 main_GEN_0011                           			 Y_OVLY                                  
+0021H	 main_GEN_0012                           			 X_OVLY                                  
+0021H	 main_GEN_0013                           			 X_OVLY                                  
+029AH	 main_GEN_0014                           			 CODE_OVLY                               

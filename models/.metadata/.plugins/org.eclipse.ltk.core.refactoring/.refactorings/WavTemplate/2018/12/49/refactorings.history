@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;WavTemplate/src/compressor.cpp&apos; to &apos;compressor.c&apos;" description="Rename resource &apos;compressor.cpp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/compressor.cpp" name="compressor.c" stamp="1544107645897" updateReferences="false"/>
+</session>

@@ -58,7 +58,7 @@ void processing()
 		{
 			*sbC = (*sbL) * processing_input_gain + (*sbR) * processing_input_gain;
 			sbR++;
-			sbR++;
+			sbL++;
 			sbC++;
 		}
 		sbL -= BLOCK_SIZE;

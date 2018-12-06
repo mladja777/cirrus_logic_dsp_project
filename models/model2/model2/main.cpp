@@ -59,7 +59,7 @@ void processing()
 			*sbC = (*sbL) * processing_input_gain + (*sbR) * processing_input_gain;
 			//*sbC = (*sbC) >> 1;
 			sbR++;
-			sbR++;
+			sbL++;
 			sbC++;
 		}
 		sbL -= BLOCK_SIZE;
@@ -103,13 +103,13 @@ void processing()
 		{
 			// sampleBuffer[3][i] = sampleBuffer[0][i] * processing_input_gain;
 			*sbLs = (*sbL) * processing_input_gain;
-			//*sbLs = (*sbLs) >> 1;
+			//*sbLs = (*sbLs) << 1;
 			// sampleBuffer[4][i] = sampleBuffer[2][i] * processing_input_gain;
 			*sbRs = (*sbR) * processing_input_gain;
-			//*sbRs = (*sbRs) >> 1;
+			//*sbRs = (*sbRs) << 1;
 			// sampleBuffer[1][i] = sampleBuffer[3][i] + sampleBuffer[4][i];
-			*sbC = (*sbLs) + (*sbRs);
-			//*sbC = (*sbC) >> 1;
+			*sbC = *sbLs + *sbRs;
+			//*sbC = (*sbC) << 1;
 			// pointer increments
 			sbLs++;
 			sbL++;
@@ -133,7 +133,7 @@ void processing()
 		{
 			// sampleBuffer[1][i] = sampleBuffer[1][i] * processing_headroom_gain;
 			*sbC = (*sbC) * processing_headroom_gain;
-			//*sbC = (*sbC) >> 1;
+			//*sbC = (*sbC) << 1;
 			sbC++;
 		}
 		// reseting sbC
@@ -144,10 +144,10 @@ void processing()
 		{
 			// sampleBuffer[0][i] = sampleBuffer[1][i] * gain6db_scaled;
 			*sbL = (*sbC) * gain6db_scaled;
-			//*sbL = (*sbL) >> 1;
+			//*sbL = (*sbL) << 1;
 			// sampleBuffer[2][i] = sampleBuffer[1][i] * gain6db_scaled;
 			*sbR = (*sbC) * gain6db_scaled;
-			//*sbR = (*sbR) >> 1;
+			//*sbR = (*sbR) << 1;
 			// ptr inc
 			sbL++;
 			sbR++;
@@ -163,10 +163,10 @@ void processing()
 		{
 			// sampleBuffer[3][i] = sampleBuffer[3][i] * gain2db_scaled;
 			*sbLs = (*sbLs) * gain2db_scaled;
-			//*sbLs = (*sbLs) >> 1;
+			//*sbLs = (*sbLs) << 1;
 			// sampleBuffer[4][i] = sampleBuffer[4][i] * gain2db_scaled;
 			*sbRs = (*sbRs) * gain2db_scaled;
-			//*sbRs = (*sbRs) >> 1;
+			//*sbRs = (*sbRs) << 1;
 			// inc ptr
 			sbLs++;
 			sbRs++;
@@ -179,7 +179,7 @@ void processing()
 		for (i = 0; i < BLOCK_SIZE; i++)
 		{
 			// sampleBuffer[3][i] = sampleBuffer[0][i] + sampleBuffer[3][i];
-			*sbLs = (*sbL) + (*sbLs);
+			*sbLs += *sbL;
 			// sampleBuffer[4][i] = sampleBuffer[2][i] + sampleBuffer[4][i];
 			*sbRs = (*sbL) + (*sbRs);
 			// inc ptr
@@ -234,13 +234,15 @@ DSPint main(DSPint argc, char* argv[])
 		{
 			// Input gain argv[4]
 			DSPint processing_gain_dB = atoi(argv[4]);
-			processing_input_gain = pow(10.0, (processing_gain_dB / 20.0));
+			double pig  = pow(10.0, (processing_gain_dB / 20.0));
+			processing_input_gain = pig;
 
 			if (argc > 5)
 			{
 				// Headroom gain argv[5]
 				processing_gain_dB = atoi(argv[5]);
-				processing_headroom_gain = pow(10.0, (processing_gain_dB / 20.0));
+				double phg = pow(10.0, (processing_gain_dB / 20.0));
+				processing_headroom_gain = phg;
 
 				if (argc > 6)
 				{
@@ -317,7 +319,7 @@ DSPint main(DSPint argc, char* argv[])
 					sample = sample >> (32 - inputWAVhdr.fmt.BitsPerSample);
 					fwrite(&sample, outputWAVhdr.fmt.BitsPerSample/8, 1, wav_out);		
 				}
-			}		
+			}
 		}
 	}
 	

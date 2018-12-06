@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="pda.launchType">
+<stringAttribute key="ATTR_SELECTED_DEBUG_INFO_TYPE" value="STANDALONE_DEBUG_INFO_TYPE"/>
+<stringAttribute key="ATTR_SELECTED_TARGET_TYPE" value="TARGET_TYPE_SINGLE_CORE"/>
+<stringAttribute key="ATTR_STANDALONE_PROJECTS" value="D:/RA44-2015-SHARED/AADSP2_project/cirrus_logic_dsp_project/models/WavTemplate/output/standalone/WavTemplate.uld,"/>
+</launchConfiguration>

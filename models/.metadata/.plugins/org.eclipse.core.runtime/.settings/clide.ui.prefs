@@ -1,0 +1,4 @@
+CS48L2X=$(SDK_INSTALL_DIR)/CS48L2X
+crystal32=$(SDK_INSTALL_DIR)/crystal32
+eclipse.preferences.version=1
+lastImportExistingFolder=D\:\\RA44-2015-SHARED\\AADSP2_project\\cirrus_logic_dsp_project\\SULDWavTemplate
