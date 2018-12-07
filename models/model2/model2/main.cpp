@@ -20,12 +20,6 @@ DSPfract processing_headroom_gain = FRACT_NUM(0.707946);
 
 bool processing_enable = true;
 
-/*
-DSPint MODE2_0_0_buffer_choice[] = { 0, 2, 0, 0, 0 };
-DSPint MODE0_2_0_buffer_choice[] = { 3, 4, 0, 0, 0 };
-DSPint MODE3_2_0_buffer_choice[] = { 0, 1, 2, 3, 4 };
-*/
-
 DSPint buffer_choice[3][5] = { { 0, 2, 0, 0, 0 }, { 3, 4, 0, 0, 0 }, { 0, 1, 2, 3, 4 } };
 
 // Default processing compressor parameters for this project
@@ -37,13 +31,11 @@ AudioCompressor_t processing_audio_compressor;
 enum processing_output_mode_t { MODE2_0_0, MODE0_2_0, MODE3_2_0 };
 processing_output_mode_t processing_output_mode = MODE3_2_0;
 
-// TODO Monday: indexing with pointers. --> DONE.
 // For mode020 all processing has to be done like mode320 \
 //		because of 2 accumulations of L and R, and C is used \
 //		for faster processing so function wouldn't write \
 //		in L and R and just in C.
 // For mode200 reduced processing has to be done.
-// TODO: fixed point.
 void processing()
 {
 	// mode020
@@ -57,7 +49,6 @@ void processing()
 		for (i = 0; i < BLOCK_SIZE; i++)
 		{
 			*sbC = (*sbL) * processing_input_gain + (*sbR) * processing_input_gain;
-			//*sbC = (*sbC) >> 1;
 			sbR++;
 			sbL++;
 			sbC++;
@@ -69,7 +60,6 @@ void processing()
 		for (i = 0; i < BLOCK_SIZE; i++)
 		{
 			*sbC = (*sbC) * processing_headroom_gain;
-			//*sbC = (*sbC) >> 1;
 			sbC++;
 		}
 		sbC -= BLOCK_SIZE;
@@ -77,9 +67,7 @@ void processing()
 		for (i = 0; i < BLOCK_SIZE; i++)
 		{
 			*sbL = (*sbC) * gain6db_scaled;
-			//*sbL = (*sbL) >> 1;
 			*sbR = (*sbC) * gain6db_scaled;
-			//*sbR = (*sbR) >> 1;
 			sbL++;
 			sbR++;
 			sbC++;
@@ -96,93 +84,64 @@ void processing()
 		DSPfract *sbR = sampleBuffer[2];
 		DSPfract *sbLs = sampleBuffer[3];
 		DSPfract *sbRs = sampleBuffer[4];
+		DSPaccum tmp;
 
 		DSPint i;
-		// TODO: ASM hw loop --> optimized.
 		for (i = 0; i < BLOCK_SIZE; i++)
 		{
-			// sampleBuffer[3][i] = sampleBuffer[0][i] * processing_input_gain;
 			*sbLs = (*sbL) * processing_input_gain;
-			//*sbLs = (*sbLs) << 1;
-			// sampleBuffer[4][i] = sampleBuffer[2][i] * processing_input_gain;
 			*sbRs = (*sbR) * processing_input_gain;
-			//*sbRs = (*sbRs) << 1;
-			// sampleBuffer[1][i] = sampleBuffer[3][i] + sampleBuffer[4][i];
-			*sbC = *sbLs + *sbRs;
-			//*sbC = (*sbC) << 1;
-			// pointer increments
+			tmp = *sbLs + *sbRs;
+			*sbC = tmp;
 			sbLs++;
 			sbL++;
 			sbRs++;
 			sbR++;
 			sbC++;
 		}
-		// reseting pointers positions
 		sbL = sampleBuffer[0];
 		sbC = sampleBuffer[1];
 		sbR = sampleBuffer[2];
 		sbLs = sampleBuffer[3];
 		sbRs = sampleBuffer[4];
 
-		// sampleBuffer[3]
 		gst_audio_dynamic_transform_compressor_double(&processing_audio_compressor, sbLs, BLOCK_SIZE);
-		// sampleBuffer[4]
+	
 		gst_audio_dynamic_transform_compressor_double(&processing_audio_compressor, sbRs, BLOCK_SIZE);
 
 		for (i = 0; i < BLOCK_SIZE; i++)
 		{
-			// sampleBuffer[1][i] = sampleBuffer[1][i] * processing_headroom_gain;
 			*sbC = (*sbC) * processing_headroom_gain;
-			//*sbC = (*sbC) << 1;
 			sbC++;
 		}
-		// reseting sbC
 		sbC = sampleBuffer[1];
 
-		// TODO: ASM hw loop
 		for (i = 0; i < BLOCK_SIZE; i++)
 		{
-			// sampleBuffer[0][i] = sampleBuffer[1][i] * gain6db_scaled;
 			*sbL = (*sbC) * gain6db_scaled;
-			//*sbL = (*sbL) << 1;
-			// sampleBuffer[2][i] = sampleBuffer[1][i] * gain6db_scaled;
 			*sbR = (*sbC) * gain6db_scaled;
-			//*sbR = (*sbR) << 1;
-			// ptr inc
 			sbL++;
 			sbR++;
 			sbC++;
 		}
-		// reseting pointers positions
 		sbL = sampleBuffer[0];
 		sbC = sampleBuffer[1];
 		sbR = sampleBuffer[2];
 
-		// TODO: ASM hw loop
 		for (i = 0; i < BLOCK_SIZE; i++)
 		{
-			// sampleBuffer[3][i] = sampleBuffer[3][i] * gain2db_scaled;
 			*sbLs = (*sbLs) * gain2db_scaled;
-			//*sbLs = (*sbLs) << 1;
-			// sampleBuffer[4][i] = sampleBuffer[4][i] * gain2db_scaled;
 			*sbRs = (*sbRs) * gain2db_scaled;
-			//*sbRs = (*sbRs) << 1;
-			// inc ptr
 			sbLs++;
 			sbRs++;
 		}
-		// ptr reset
 		sbLs = sampleBuffer[3];
 		sbRs = sampleBuffer[4];
 
-		// TODO: ASM hw loop
 		for (i = 0; i < BLOCK_SIZE; i++)
 		{
-			// sampleBuffer[3][i] = sampleBuffer[0][i] + sampleBuffer[3][i];
 			*sbLs += *sbL;
-			// sampleBuffer[4][i] = sampleBuffer[2][i] + sampleBuffer[4][i];
 			*sbRs = (*sbL) + (*sbRs);
-			// inc ptr
 			sbLs++;
 			sbRs++;
 			sbL++;
@@ -318,6 +277,13 @@ DSPint main(DSPint argc, char* argv[])
 					sample = sampleBuffer[buffer_choice[processing_output_mode][k]][j].toLong() ;	// crude, non-rounding 			
 					sample = sample >> (32 - inputWAVhdr.fmt.BitsPerSample);
 					fwrite(&sample, outputWAVhdr.fmt.BitsPerSample/8, 1, wav_out);		
+				}
+			}
+			for (DSPint i = 0; i < MAX_NUM_CHANNEL; i++)
+			{
+				for (DSPint j = 0; i < MAX_NUM_CHANNEL; i++)
+				{
+					sampleBuffer[i][j] = FRACT_NUM(0);
 				}
 			}
 		}

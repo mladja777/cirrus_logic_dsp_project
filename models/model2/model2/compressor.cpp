@@ -26,8 +26,10 @@ void gst_audio_dynamic_transform_compressor_float(
 
 	for (i = 0; i < num_samples; i++) {
 		val = data[i];
-		DSPfract negVal = val - threshold;
-		DSPfract posVal = val + threshold;
+		DSPaccum negAccVal = val - threshold;
+		DSPfract negVal = negAccVal;
+		DSPaccum posAccVal = val + threshold;
+		DSPfract posVal = posAccVal;
 
 		if (val > threshold) {
 			val = negVal * compressor->ratio;
@@ -41,7 +43,6 @@ void gst_audio_dynamic_transform_compressor_float(
 
 }
 
-// TODO: MAC
 void gst_audio_dynamic_transform_compressor_double(AudioCompressor_t * compressor, DSPfract * data, DSPfract num_samples)
 {
 	DSPaccum val, threshold = compressor->threshold;
@@ -53,8 +54,10 @@ void gst_audio_dynamic_transform_compressor_double(AudioCompressor_t * compresso
 
 	for (i = 0; i < num_samples; i++) {
 		val = data[i];
-		DSPfract negVal = val - threshold;
-		DSPfract posVal = val + threshold;
+		DSPaccum negAccVal = val - threshold;
+		DSPfract negVal = negAccVal;
+		DSPaccum posAccVal = val + threshold;
+		DSPfract posVal = posAccVal;
 
 		if (val > threshold) {
 			val = negVal * compressor->ratio;
